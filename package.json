@@ -14,12 +14,14 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-plugin-app-event": "^1.2.2",
-    "cordova-plugin-background-mode": "github:katzer/cordova-plugin-background-mode"
+    "cordova-plugin-background-mode": "github:katzer/cordova-plugin-background-mode",
+    "cordova-plugin-file": "^8.1.3"
   },
   "cordova": {
     "plugins": {
       "cordova-plugin-background-mode": {},
-      "cordova-plugin-app-event": {}
+      "cordova-plugin-app-event": {},
+      "cordova-plugin-file": {}
     }
   }
 }
