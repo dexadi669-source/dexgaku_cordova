@@ -1,0 +1,25 @@
+{
+  "name": "com.dexgaku.app",
+  "displayName": "DeXGaku",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cordova-plugin-app-event": "^1.2.2",
+    "cordova-plugin-background-mode": "github:katzer/cordova-plugin-background-mode"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-background-mode": {},
+      "cordova-plugin-app-event": {}
+    }
+  }
+}
