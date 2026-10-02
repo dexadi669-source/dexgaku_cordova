@@ -1,0 +1,1039 @@
+/* ================= MENU KOSAKATA ================= */
+
+.kosakata-search-box{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card-bg);
+  border-radius: 999px;
+  padding: 12px 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+  margin-bottom: 16px;
+}
+
+.kosakata-search-icon{
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.kosakata-search-input{
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-family: inherit;
+  min-width: 0;
+}
+
+.kosakata-search-input::placeholder{
+  color: var(--text-muted);
+}
+
+.kosakata-search-clear{
+  background: #e8e8e8;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.kosakata-section-label{
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: left;
+  margin: 4px 0 14px;
+}
+
+.kosakata-grid{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kosakata-cat-card{
+  background: var(--card-bg);
+  border-radius: 18px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+  transition: transform .1s ease, box-shadow .1s ease;
+}
+
+.kosakata-cat-card:hover{
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.kosakata-cat-card:active{
+  transform: scale(0.98);
+}
+
+.kosakata-cat-icon{
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.kosakata-color-1{ background: #ece4fb; }
+.kosakata-color-2{ background: #dbeeff; }
+.kosakata-color-3{ background: #ffe9d9; }
+.kosakata-color-4{ background: #ddf3e4; }
+.kosakata-color-5{ background: #ffe1ec; }
+.kosakata-color-6{ background: #fff3cf; }
+
+.kosakata-cat-text{
+  flex: 1;
+  min-width: 0;
+}
+
+.kosakata-cat-title{
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 2px;
+}
+
+.kosakata-cat-example{
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kosakata-cat-arrow{
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+@media (min-width: 600px){
+  .kosakata-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.kosakata-detail-header{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.kosakata-detail-icon{
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+  flex-shrink: 0;
+}
+
+.kosakata-detail-headtext{
+  text-align: left;
+}
+
+.kosakata-detail-title{
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin: 0 0 2px;
+}
+
+.kosakata-detail-count{
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.kosakata-progress-row{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.kosakata-progress-track{
+  flex: 1;
+  height: 8px;
+  background: #e8e8e8;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.kosakata-progress-fill{
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+  border-radius: 999px;
+  transition: width .2s ease;
+}
+
+.kosakata-progress-percent{
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  min-width: 36px;
+  text-align: right;
+}
+
+.kosakata-word-list{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kosakata-word-card{
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+  cursor: pointer;
+  text-align: left;
+  transition: box-shadow .12s ease, transform .1s ease;
+}
+
+.kosakata-word-card:hover{
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.kosakata-word-card:active{
+  transform: scale(0.99);
+}
+
+.kosakata-word-top-row{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kosakata-word-main{
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.kosakata-word-kanji{
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #4caf50;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.kosakata-word-reading{
+  font-size: 1rem;
+  font-weight: 700;
+  color: #4caf50;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.kosakata-word-romaji-line{
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 3px 0 0;
+}
+
+.kosakata-word-arti-badge{
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: right;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.kosakata-word-card.checked{
+  box-shadow: 0 0 0 2px #4caf50, 0 2px 10px rgba(0,0,0,0.045);
+}
+
+.kosakata-pagination{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.kosakata-page-btn{
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: none;
+  background: var(--card-bg);
+  color: var(--text-dark);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: background .12s ease, color .12s ease;
+}
+
+.kosakata-page-btn:hover{
+  background: #eaeaea;
+}
+
+.kosakata-page-btn.active{
+  background: #4caf50;
+  color: #fff;
+}
+
+.kosakata-page-ellipsis{
+  color: var(--text-muted);
+  font-weight: 700;
+  padding: 0 2px;
+}
+
+.kosakata-search-heading{
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: left;
+  margin: 4px 0 4px;
+}
+
+.kosakata-search-count{
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: left;
+  margin: 0 0 16px;
+}
+
+.kosakata-search-empty{
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  padding: 28px 20px;
+  text-align: center;
+  color: var(--text-muted);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+}
+
+.kosakata-search-card{
+  background: var(--card-bg);
+  border-radius: 18px;
+  padding: 18px 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: transform .1s ease, box-shadow .1s ease;
+}
+
+.kosakata-search-card:hover{
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.kosakata-search-card:active{
+  transform: scale(0.98);
+}
+
+.kosakata-search-kata{
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.kosakata-search-romaji{
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.kosakata-search-arti{
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.kosakata-search-catlabel{
+  display: inline-block;
+  font-size: 0.75rem;
+  color: #8b5cf6;
+  background: #ece4fb;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.bg-foto-kosakata {
+  background-image: url('aset/kotoba/background-kosakata.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* =================================================
+   UI BARU: HALAMAN UTAMA KOSAKATA
+   ================================================= */
+.kosakata-hero-modern {
+  position: relative;
+  margin: -24px -20px 24px;
+  padding: 24px 20px 28px;
+  background: linear-gradient(180deg, #fff2f5 0%, #fef7f5 100%);
+  border-radius: 0 0 32px 32px;
+  z-index: 1;
+}
+.kosakata-hero-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  z-index: -1;
+  pointer-events: none;
+}
+.kosakata-hero-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+.kosakata-hero-icon {
+  width: 54px; height: 54px;
+  background: #ff5e7e;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; color: white;
+  box-shadow: 0 4px 14px rgba(255, 94, 126, 0.35);
+}
+.kosakata-hero-title {
+  font-size: 22px; font-weight: 800;
+  color: #1a1a1a; margin: 0 0 2px;
+}
+.kosakata-hero-sub {
+  font-size: 13px; color: #8a8a8a; margin: 0;
+}
+.kosakata-summary-card {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #ffffff; border-radius: 20px;
+  padding: 16px 20px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.045);
+}
+.kosakata-summary-item {
+  display: flex; align-items: center; gap: 12px; flex: 1;
+}
+.kosakata-summary-divider {
+  width: 1.5px; height: 32px;
+  background: #f0f0f0; margin: 0 16px;
+}
+.kosakata-summary-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.icon-folder { background: #fff0e6; color: #ff8a4c; }
+.icon-doc { background: #e6f0ff; color: #4c8aff; }
+.kosakata-summary-info {
+  display: flex; flex-direction: column; text-align: left;
+}
+.kosakata-summary-val {
+  font-size: 19px; font-weight: 800;
+  color: #1a1a1a; line-height: 1.1; margin-bottom: 2px;
+}
+.kosakata-summary-lbl {
+  font-size: 12px; font-weight: 600; color: #9a9a9a;
+}
+
+/* Search Bar Modern */
+.kosakata-search-modern {
+  display: flex; align-items: center; gap: 12px;
+  background: #ffffff; border: 1.5px solid #f0f0f0;
+  border-radius: 999px; padding: 14px 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.025);
+  margin-bottom: 24px; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.kosakata-search-modern:focus-within {
+  border-color: #ff5e7e; box-shadow: 0 4px 16px rgba(255, 94, 126, 0.12);
+}
+.kosakata-search-svg { flex-shrink: 0; }
+.kosakata-search-input {
+  flex: 1; border: none; outline: none;
+  font-size: 15px; color: #1a1a1a; background: transparent; font-family: inherit;
+}
+.kosakata-search-input::placeholder { color: #a0aab5; }
+
+/* Grid Kategori Modern */
+.kosakata-cat-header-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.kosakata-cat-heading {
+  font-size: 16px; font-weight: 800; color: #1a1a1a; margin: 0;
+}
+.kosakata-cat-link {
+  font-size: 13px; font-weight: 700; color: #ff5e7e; cursor: pointer;
+}
+.kosakata-grid-modern {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.kosakata-card-modern {
+  background: #ffffff; border-radius: 20px; border: 1px solid #f7f7f7;
+  padding: 16px 14px; display: flex; align-items: flex-start; gap: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.035);
+  cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+  animation: fadeInUp 0.4s ease-out backwards;
+}
+.kosakata-card-modern:hover {
+  transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+.kosakata-card-modern:active {
+  transform: scale(0.96);
+}
+
+/* Palet Warna Lingkaran Icon */
+.kosakata-card-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.bg-pink { background: #ffe4e8; }
+.bg-orange { background: #ffebd9; }
+.bg-blue { background: #e6f0ff; }
+.bg-purple { background: #f0e6ff; }
+.bg-green { background: #e4f7e8; }
+.bg-teal { background: #e0f5f2; }
+
+/* Tipografi Card */
+.kosakata-card-content { flex: 1; min-width: 0; text-align: left; }
+.kosakata-card-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 4px;
+}
+.kosakata-card-num {
+  font-size: 13px; font-weight: 800; color: #1a1a1a;
+}
+.kosakata-card-arrow {
+  font-size: 16px; font-weight: 700; color: #c0c0c0; line-height: 1;
+}
+.kosakata-card-title {
+  font-size: 14px; font-weight: 800; color: #1a1a1a;
+  margin: 0 0 2px;
+}
+.kosakata-card-count {
+  font-size: 12px; font-weight: 600; color: #9a9a9a; margin: 0;
+}
+
+/* =====================================================
+   UI BARU KOSAKATA (MOCKUP)
+   ===================================================== */
+.koto-wrapper {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fffdfd;
+  min-height: 100vh;
+  margin: -24px -20px -40px; 
+  position: relative;
+}
+
+.koto-hero {
+  background-image: url('assets/kosakata/bg-hero.svg');
+  background-size: cover;
+  background-position: center bottom;
+  padding: 30px 20px 40px;
+  border-radius: 0 0 32px 32px;
+  position: relative;
+}
+.koto-hero-sm {
+  padding: 24px 20px 30px;
+}
+
+.koto-back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; border: none;
+  font-size: 16px; font-weight: 700; color: #e6395b;
+  cursor: pointer; padding: 0; margin-bottom: 20px;
+}
+
+.koto-title { font-size: 28px; font-weight: 800; color: #1a1a1a; margin: 0 0 4px; }
+.koto-subtitle { font-size: 14px; color: #666; margin: 0 0 24px; }
+
+/* Summary Box */
+.koto-summary {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #fff; border-radius: 20px; padding: 16px 20px;
+  box-shadow: 0 6px 20px rgba(230, 57, 91, 0.08);
+}
+.koto-sum-box { display: flex; align-items: center; gap: 12px; flex: 1; }
+.koto-sum-divider { width: 1.5px; height: 36px; background: #f0f0f0; margin: 0 16px; }
+.koto-sum-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+}
+.koto-sum-text { display: flex; flex-direction: column; }
+.koto-sum-val { font-size: 20px; font-weight: 800; color: #1a1a1a; line-height: 1.1; }
+.koto-sum-lbl { font-size: 12px; font-weight: 600; color: #888; }
+
+.koto-content { padding: 24px 20px; }
+
+.koto-hero.koto-hero-kanji {
+  background-image: url('assets/kanji/kanji-hero-bg.svg');
+  background-position: center bottom;
+}
+.koto-hero.koto-hero-sm.koto-hero-kanji {
+  background-position: center 40%;
+}
+.koto-search .kanji-search-clear {
+  margin-left: 4px;
+}
+
+/* Search Box */
+.koto-search {
+  display: flex; align-items: center; gap: 10px;
+  background: #fff; border: 1.5px solid #f0f0f0;
+  border-radius: 999px; padding: 14px 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.03); margin-bottom: 24px;
+}
+.koto-search input {
+  flex: 1; border: none; outline: none; font-size: 15px; color: #1a1a1a;
+}
+
+/* Kategori Header & Grid */
+.koto-cat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.koto-cat-header h3 { font-size: 17px; font-weight: 800; color: #1a1a1a; margin: 0; }
+.koto-link { font-size: 13px; font-weight: 700; color: #e6395b; cursor: pointer; }
+
+.koto-cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.koto-cat-card {
+  background: #fff; border-radius: 20px; padding: 16px 14px;
+  display: flex; align-items: flex-start; gap: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04); cursor: pointer;
+  transition: transform 0.15s;
+}
+.koto-cat-card:active { transform: scale(0.96); }
+.koto-cat-card *, .koto-word-card * { pointer-events: none; }
+
+.koto-cat-icon-wrap {
+  width: 46px; height: 46px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.koto-cat-info { flex: 1; }
+.koto-cat-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.koto-cat-num { font-size: 13px; font-weight: 800; color: #1a1a1a; }
+.koto-cat-arrow { font-size: 18px; font-weight: 700; color: #ccc; line-height: 1; }
+.koto-cat-name { font-size: 14px; font-weight: 800; color: #1a1a1a; margin: 0 0 2px; }
+.koto-cat-count { font-size: 12px; font-weight: 600; color: #888; margin: 0; }
+
+/* Kategori Detail Hero */
+.koto-cat-hero-content { display: flex; align-items: center; gap: 14px; }
+.koto-cat-hero-icon {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: #ffebd9; display: flex; align-items: center; justify-content: center;
+  font-size: 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.koto-cat-hero-title { font-size: 22px; font-weight: 800; margin: 0 0 2px; }
+.koto-cat-hero-sub { font-size: 14px; color: #666; margin: 0; }
+
+/* Word List */
+.koto-word-list { display: flex; flex-direction: column; gap: 12px; }
+.koto-word-card {
+  display: flex; align-items: center; gap: 14px;
+  background: #fff; border-radius: 20px; padding: 14px 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04); cursor: pointer; transition: transform 0.1s;
+}
+.koto-word-card:active { transform: scale(0.97); }
+.koto-word-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: #f4f6f9; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.koto-word-info { flex: 1; }
+.koto-word-jp { font-size: 17px; font-weight: 800; color: #1a1a1a; margin-bottom: 2px; }
+.koto-word-rm { font-size: 13px; font-weight: normal; color: #888; margin-left: 6px; }
+.koto-word-id { font-size: 14px; font-weight: 600; color: #555; }
+.koto-word-arrow { font-size: 20px; font-weight: 700; color: #ccc; }
+
+/* Modal Detail Kata */
+.koto-modal {
+  position: fixed; inset: 0; background: #fffaf9; z-index: 100;
+  overflow-y: auto; display: flex; flex-direction: column;
+  animation: slideUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
+
+.koto-modal-header { padding: 20px; }
+.koto-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #ffe1e6; color: #e6395b; padding: 6px 16px;
+  border-radius: 20px; font-size: 14px; font-weight: 700;
+  margin: 0 20px 20px; width: fit-content;
+}
+.koto-main-card {
+  background: #fff; margin: 0 20px 20px; border-radius: 24px;
+  padding: 30px 20px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+.koto-main-img { width: 110px; height: 110px; object-fit: contain; margin-bottom: 16px; }
+.koto-detail-kanji { font-size: 34px; font-weight: 800; margin: 0 0 4px; color: #1a1a1a; }
+.koto-detail-romaji { font-size: 16px; color: #666; margin: 0 0 10px; }
+.koto-detail-arti { font-size: 18px; font-weight: 700; color: #333; margin: 0; }
+
+.koto-info-card {
+  background: #fff; margin: 0 20px 16px; border-radius: 20px;
+  padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.05); text-align: left;
+}
+.koto-info-title {
+  font-size: 15px; font-weight: 800; color: #e6395b;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+}
+.koto-info-val { font-size: 16px; font-weight: 600; color: #444; margin: 0;}
+.koto-info-jp { font-size: 18px; font-weight: 800; color: #1a1a1a; margin: 0 0 4px; }
+.koto-info-rm { font-size: 14px; color: #2c6fdb; margin: 0 0 6px; }
+.koto-footer-bg { margin-top: auto; width: 100%; object-fit: cover; opacity: 0.8; }
+
+.koto-hero {
+  position: relative;
+  padding-top: 54px !important; 
+}
+.koto-back-top {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px 6px 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #e6395b;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+.koto-word-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  flex: 1;
+}
+
+.koto-word-line-top {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.koto-word-jp-new {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.koto-word-rm-new {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2c6fdb;
+}
+
+.koto-word-id-new {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666666;
+  margin: 0;
+}
+/* =================================================
+   DESAIN BARU HALAMAN DETAIL KOSAKATA (DESAIN KREM-TEAL)
+   ================================================= */
+
+.koto-v2-modal {
+  position: fixed;
+  inset: 0;
+  background-color: #F4F0E6; /* Warna latar krem acuan */
+  z-index: 999;
+  overflow-y: auto;
+  padding: 18px 20px 36px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #222222;
+  box-sizing: border-box;
+  text-align: left;
+  animation: slideUp 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Topbar Header */
+.koto-v2-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.koto-v2-back-btn {
+  background: #EBE6D8;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.koto-v2-back-btn:active {
+  transform: scale(0.92);
+}
+
+.koto-v2-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.koto-v2-brand-img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.koto-v2-brand-text {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #1A1A1A;
+}
+
+/* Sub-heading Kategori Top */
+.koto-v2-cat-sub {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #1B6B68;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+/* Hero Utama Kosakata */
+.koto-v2-hero-block {
+  margin-bottom: 20px;
+}
+
+.koto-v2-main-jp {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #111111;
+  margin: 0 0 6px 0;
+  line-height: 1.1;
+}
+
+.koto-v2-sub-reading {
+  font-size: 1rem;
+  color: #777777;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.koto-v2-main-arti {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1A1A1A;
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* Divider Garis Teal Kustom */
+.koto-v2-divider {
+  position: relative;
+  height: 1px;
+  background-color: #DDD8CB;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.koto-v2-divider::after {
+  content: "";
+  width: 18px;
+  height: 5px;
+  background-color: #1B6B68;
+  border-radius: 3px;
+}
+
+/* Block Section Contoh Kalimat */
+.koto-v2-block {
+  margin-bottom: 16px;
+}
+
+.koto-v2-section-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #1B6B68;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.koto-v2-ex-jp {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.koto-v2-ex-rm {
+  font-size: 0.88rem;
+  color: #888888;
+  margin: 0 0 4px 0;
+}
+
+.koto-v2-ex-id {
+  font-size: 0.95rem;
+  color: #333333;
+  margin: 0;
+}
+
+/* Banner Tip Footer */
+.koto-v2-tip-box {
+  background-color: #E7E3D6;
+  border-left: 3px solid #1B6B68;
+  border-radius: 4px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.koto-v2-tip-badge {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #1B6B68;
+  letter-spacing: 0.5px;
+}
+
+.koto-v2-tip-content {
+  font-size: 0.85rem;
+  color: #333333;
+  line-height: 1.4;
+  margin: 0;
+}
+/* =================================================
+   Grid Subkategori (Senada dengan menu utama)
+   ================================================= */
+.koto-sub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.koto-sub-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.koto-sub-card:active {
+  transform: scale(0.96);
+}
+
+.koto-sub-card * {
+  pointer-events: none;
+}
+
+.koto-sub-icon-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.koto-sub-info {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.koto-sub-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.koto-sub-num {
+  font-size: 13px;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.koto-sub-arrow {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ccc;
+  line-height: 1;
+}
+
+.koto-sub-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 2px;
+}
+
+.koto-sub-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  margin: 0;
+}
+
+/* =================================================
+   Penggunaan Text (Modal V2 Detail Kosakata)
+   ================================================= */
+.koto-v2-usage-text {
+  font-size: 0.95rem;
+  color: #333333;
+  line-height: 1.55;
+  margin: 0;
+  font-weight: 500;
+}

@@ -1,51 +1,484 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>DeX Gaku</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="quiz.css">
+<link rel="stylesheet" href="tambah-data.css">
+<link rel="stylesheet" href="rangkuman.css">
+<link rel="stylesheet" href="import-export.css">
+<link rel="stylesheet" href="bunpo.css">
+<link rel="stylesheet" href="kana.css">
+<link rel="stylesheet" href="simulasi.css">
+<link rel="stylesheet" href="riwayat.css">
+<link rel="stylesheet" href="koto.css">
+<!-- CSS KHUSUS TERJEMAHAN -->
+<link rel="stylesheet" href="terjemahan.css">
+<link rel="stylesheet" href="ai-sensei.css">
+  <link rel="stylesheet" href="kanji.css">
 
-    http://www.apache.org/licenses/LICENSE-2.0
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
-            https://cordova.apache.org/docs/en/latest/
-        Some notes:
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="css/index.css">
-      <script src="cordova.js"></script>
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+</head>
+<body>
+
+  <!-- Main content -->
+  <main id="mainView">
+
+    <!-- HOME VIEW -->
+    <section id="homeView" class="view active">
+
+      <div class="header">
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg>
+        </button>
+
+        <div class="header-text">
+          <h1 class="app-title"><span class="app-title-dex">DeX</span> <span class="app-title-gaku">Gaku</span></h1>
+          <p class="subtitle">Belajar Bahasa Jepang Level N5</p>
         </div>
-        <script src="cordova.js"></script>
-        <script src="js/index.js"></script>
-    </body>
+
+        <div class="avatar-wrap">
+          <div class="avatar">
+            <img class="avatar-img" src="assets/logo-shiba.svg" alt="Logo DeX Gaku" width="52" height="52">
+          </div>
+        </div>
+      </div>
+
+      <div class="welcome-banner">
+        <div class="welcome-text" style="position:relative;z-index:1;padding-right:34%;">
+          <!-- Gelembung percakapan baru -->
+          <div class="mascot-chat-bubble" id="shibaGreeting">こんにちは!</div>
+          
+          <p class="welcome-title">Selamat belajar!</p>
+          <p class="welcome-sub">Terus belajar setiap hari<br>untuk hasil yang lebih baik!</p>
+
+          <div class="streak-pill">
+            <span class="streak-item">
+              <span class="streak-icon">&#128293;</span>
+              <span class="streak-label">Streak</span>
+              <span class="streak-value" id="streakValue">0</span>
+              <span class="streak-unit">hari</span>
+            </span>
+            <span class="streak-divider"></span>
+            <span class="streak-item">
+              <span class="streak-icon">&#127941;</span>
+              <span class="streak-label">Level</span>
+              <span class="streak-value">N5</span>
+            </span>
+          </div>
+        </div>
+        <img class="welcome-mascot" src="assets/header-shiba.svg" alt="" aria-hidden="true" style="position:absolute;top:0;right:0;height:100%;width:auto;max-width:48%;object-fit:cover;object-position:62% center;pointer-events:none;">
+      </div>
+
+      <p class="section-heading"><span class="section-heading-icon">&#129513;</span> Menu Belajar</p>
+
+  <div class="grid" id="menuGrid">
+  <!-- Hiragana -->
+  <div class="card" data-menu="hiragana">
+    <div class="card-icon icon-red"><span class="icon-text">あ</span></div>
+    <div class="card-title">Hiragana</div>
+    <div class="card-sub">Belajar huruf Hiragana</div>
+    <span class="card-arrow arrow-red">&#8250;</span>
+  </div>
+
+  <!-- Katakana -->
+  <div class="card" data-menu="katakana">
+    <div class="card-icon icon-blue"><span class="icon-text">ア</span></div>
+    <div class="card-title">Katakana</div>
+    <div class="card-sub">Belajar huruf Katakana</div>
+    <span class="card-arrow arrow-blue">&#8250;</span>
+  </div>
+
+  <!-- Kanji -->
+  <div class="card" data-menu="kanji">
+    <div class="card-icon icon-orange"><span class="icon-text">漢</span></div>
+    <div class="card-title">Kanji</div>
+    <div class="card-sub">Belajar Kanji Level N5</div>
+    <span class="card-arrow arrow-orange">&#8250;</span>
+  </div>
+
+  <!-- Kosakata -->
+  <div class="card" data-menu="kotoba">
+    <div class="card-icon icon-green">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+    </div>
+    <div class="card-title">Kosakata</div>
+    <div class="card-sub">Belajar kosakata sehari-hari</div>
+    <span class="card-arrow arrow-green">&#8250;</span>
+  </div>
+
+  <!-- Grammar -->
+  <div class="card" data-menu="bunpo">
+    <div class="card-icon icon-purple">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V5H6a2 2 0 0 0-2 2v3.8H2.5a1.5 1.5 0 0 0 0 3H4v4a2 2 0 0 0 2 2h4v1.5a1.5 1.5 0 0 0 3 0V19h4a2 2 0 0 0 2-2v-4h1.5a1.5 1.5 0 0 0 0-3z"/></svg>
+    </div>
+    <div class="card-title">Grammar</div>
+    <div class="card-sub">Pola dan tata bahasa Jepang</div>
+    <span class="card-arrow arrow-purple">&#8250;</span>
+  </div>
+
+  <!-- Quiz -->
+  <div class="card" data-menu="quiz">
+    <div class="card-icon icon-pink">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+    </div>
+    <div class="card-title">Quiz</div>
+    <div class="card-sub">Uji kemampuan belajarmu</div>
+    <span class="card-arrow arrow-pink">&#8250;</span>
+  </div>
+
+  <!-- Simulasi JLPT -->
+  <div class="card" data-menu="simulasi">
+    <div class="card-icon icon-teal">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+    </div>
+    <div class="card-title">Simulasi JLPT</div>
+    <div class="card-sub">Latihan soal seperti ujian</div>
+    <span class="card-arrow arrow-teal">&#8250;</span>
+  </div>
+
+  <!-- Riwayat -->
+  <div class="card" data-menu="riwayat">
+    <div class="card-icon icon-gray">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/><polyline points="12 6 12 12 16 14"/></svg>
+    </div>
+    <div class="card-title">Riwayat</div>
+    <div class="card-sub">Lihat histori belajarmu</div>
+    <span class="card-arrow arrow-gray">&#8250;</span>
+  </div>
+
+  <!-- Tambah Data -->
+  <div class="card" data-menu="tambah">
+    <div class="card-icon icon-orange-light">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="card-title">Tambah Data</div>
+    <div class="card-sub">Tambah materi baru</div>
+    <span class="card-arrow arrow-orange-light">&#8250;</span>
+  </div>
+
+  <!-- Rangkuman -->
+  <div class="card" data-menu="rangkuman">
+    <div class="card-icon icon-indigo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+    </div>
+    <div class="card-title">Rangkuman</div>
+    <div class="card-sub">Ringkasan materi Minna no Nihongo</div>
+    <span class="card-arrow arrow-indigo">&#8250;</span>
+  </div>
+  
+  <!-- MENU TERJEMAHAN (BARU) -->
+  <div class="card" data-menu="terjemahan">
+    <div class="card-icon icon-blue-light">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg>
+    </div>
+    <div class="card-title">Terjemahan</div>
+    <div class="card-sub">Kamus & Translate N5</div>
+    <span class="card-arrow arrow-blue-light">&#8250;</span>
+  </div>
+
+    <!-- AI Sensei -->
+<div class="card" data-menu="ai">
+  <div class="card-icon icon-teal">
+    <span class="icon-text">🤖</span>
+  </div>
+  <div class="card-title">AI Sensei</div>
+  <div class="card-sub">Tanya jawab pintar</div>
+  <span class="card-arrow arrow-teal">&#8250;</span>
+</div>
+
+
+</div>
+
+    </section>
+
+    <!-- DETAIL VIEW -->
+    <section id="detailView" class="view">
+      <div class="detail-header" id="detailHeaderStandard">
+        <button class="back-btn" id="backBtn">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <span>Kembali</span>
+        </button>
+      </div>
+      <div class="detail-body">
+        <div id="detailStandardIntro">
+          <div class="detail-glyph" id="detailGlyph">&#127760;</div>
+          <h2 class="detail-title" id="detailTitle">Hiragana</h2>
+          <p class="detail-sub" id="detailSub">あいうえお</p>
+        </div>
+        <div id="detailExtra"></div>
+      </div>
+    </section>
+
+    <!-- AI SENSEI VIEW -->
+<section id="aiView" class="view">
+       <div class="ai-header">
+       <button class="back-btn" onclick="showHome()" style="padding:0; margin-right:8px;">
+         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg>
+       </button>
+       <img src="assets/ai/ai_logo.png" alt="AI Sensei" class="ai-header-avatar" onerror="this.removeAttribute('onerror'); this.setAttribute('src', 'assets/ai/ai_logo.png')">
+         <div class="ai-header-info">
+         <h1>DeX Sensei</h1>
+         <!-- Tambahkan id="aiStatusText" dan id="aiStatusDot" -->
+         <div class="ai-status" id="aiStatusContainer">
+           <span class="ai-status-dot" id="aiStatusDot"></span> 
+           <span id="aiStatusText">Online</span>
+         </div>
+       </div>
+
+       
+       <!-- Tombol Reset Baru ditaruh di pojok kanan Header -->
+       <button class="ai-reset-btn" onclick="aiResetChat()" title="Reset Percakapan">
+         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <polyline points="23 20 23 14 17 14"></polyline>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+         </svg>
+       </button>
+     </div>
+
+  <div class="ai-chat" id="aiChatContainer">
+    <div class="ai-welcome">
+      <h2>こんにちは！</h2>
+      <p>Saya DeX Sensei. Kamu bisa bertanya tentang kosakata, kanji, grammar, partikel, atau meminta latihan soal JLPT N5.</p>
+    </div>
+  </div>
+
+  <div class="ai-input-area">
+    <div class="ai-input-box">
+      <textarea id="aiUserInput" placeholder="Tanya Sensei..." rows="1"></textarea>
+      <button class="ai-send-btn" id="aiSendBtn" onclick="aiSendMessage()">➤</button>
+    </div>
+  </div>
+</section>
+
+
+    <!-- TERJEMAHAN VIEW (BARU) -->
+    <section id="terjemahanView" class="view">
+      <div class="translate-container">
+        
+        <!-- Tombol kembali yang langsung membersihkan form & pulang ke Home -->
+        <button class="kanji-hero-back" onclick="hideKeyboard(); showHome();" style="position: absolute; top: 22px; left: 16px; z-index: 10;">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+
+
+        <div class="header" style="margin-top: 15px;">
+          <div class="flag-icon" style="margin-left: 35px;">🇮🇩</div>
+
+          <h1 style="font-size: 20px; font-weight: 800; color: #1a1a1a; text-align: center; line-height: 1.2;">
+            TERJEMAHAN<br>JEPANG
+          </h1>
+
+          <div class="flag-icon" style="margin-right: 35px;">🇯🇵</div>
+        </div>
+
+        <div class="input-wrapper">
+          <textarea id="inputText" inputmode="none" placeholder="Ketik teks untuk diterjemahkan...&#10;(Contoh: Makan, Halo, Belajar)"></textarea>
+        </div>
+
+        <button class="btn-translate" onclick="translateText()">TERJEMAHKAN ❯</button>
+
+        <div class="output-section" id="output">
+          <div class="output-title">HASIL TERJEMAHAN</div>
+          <div style="text-align:center; color:#888; font-size:13px; margin-top:20px;">Belum ada teks yang diterjemahkan.</div>
+        </div>
+        
+        <div class="disclaimer-note">
+          *Catatan: Hasil terjemahan mungkin tidak sepenuhnya akurat, terutama untuk kalimat panjang. Harap diteliti kembali. Sistem ini menggunakan Google Translate.
+        </div>
+      </div>
+
+      <!-- FLICK PREVIEW (SALIB DIAM DI TEMPAT) -->
+      <div id="flickPreview" class="flick-preview">
+        <div class="flick-char" id="flickTop"></div>
+        <div class="flick-char" id="flickLeft"></div>
+        <div class="flick-char" id="flickCenter"></div>
+        <div class="flick-char" id="flickRight"></div>
+        <div class="flick-char" id="flickBottom"></div>
+      </div>
+
+      <div id="customKeyboard">
+        <div id="keyboardModeTitle" class="keyboard-mode-title">QWERTY LATIN</div>
+        <!-- KANA MODE -->
+        <div id="kanaKeyboard" class="kana-grid-layout" style="display:none;">
+          <button class="key special" data-action="undo">↶</button>
+          <button class="key kana-key" data-base="あ">あ</button>
+          <button class="key kana-key" data-base="か">か</button>
+          <button class="key kana-key" data-base="さ">さ</button>
+          <button class="key delete-key" data-action="delete">⌫</button>
+          <button class="key special" data-action="left">◀</button>
+          <button class="key kana-key" data-base="た">た</button>
+          <button class="key kana-key" data-base="な">な</button>
+          <button class="key kana-key" data-base="は">は</button>
+          <button class="key special" data-action="right">▶</button>
+          <button class="key number-key" data-action="switch-number">123</button>
+          <button class="key kana-key" data-base="ま">ま</button>
+          <button class="key kana-key" data-base="や">や</button>
+          <button class="key kana-key" data-base="ら">ら</button>
+          <button class="key space-key" data-action="space">␣</button>
+          <button class="key mode-key" data-action="switch-qwerty" style="font-size: 11px;">A/あ</button>
+          <button class="key kana-key" data-base="わ">わ</button>
+          <button class="key kana-key" data-base="ん">ん</button>
+          <button class="key modifier-key" data-action="modifier">小/゛゜</button>
+          <button class="key enter-key" data-action="enter" style="font-size: 19px;">↵</button>
+        </div>
+
+        <!-- NUMBER MODE -->
+        <div id="numberKeyboard" style="display:none;">
+          <div class="keyboard-row num-4-col">
+            <button class="key" data-char="1">1</button>
+            <button class="key" data-char="2">2</button>
+            <button class="key" data-char="3">3</button>
+            <button class="key delete-key" data-action="delete">⌫</button>
+          </div>
+          <div class="keyboard-row num-4-col">
+            <button class="key" data-char="4">4</button>
+            <button class="key" data-char="5">5</button>
+            <button class="key" data-char="6">6</button>
+            <button class="key" data-char="-">-</button>
+          </div>
+          <div class="keyboard-row num-4-col">
+            <button class="key" data-char="7">7</button>
+            <button class="key" data-char="8">8</button>
+            <button class="key" data-char="9">9</button>
+            <button class="key space-key" data-action="space" style="font-size: 14px;">␣</button>
+          </div>
+          <div class="keyboard-row num-5-col">
+            <button class="key mode-key" data-action="switch-kana" style="font-size: 12px;">あ/A</button>
+            <button class="key" data-char=",">,</button>
+            <button class="key" data-char="0">0</button>
+            <button class="key" data-char=".">.</button>
+            <button class="key enter-key" data-action="enter" style="font-size: 19px;">↵</button>
+          </div>
+        </div>
+
+        <!-- QWERTY MODE -->
+        <div id="qwertyKeyboard">
+          <div class="qwerty-row top">
+            <button class="q-key" data-key="q">q</button><button class="q-key" data-key="w">w</button><button class="q-key" data-key="e">e</button><button class="q-key" data-key="r">r</button><button class="q-key" data-key="t">t</button><button class="q-key" data-key="y">y</button><button class="q-key" data-key="u">u</button><button class="q-key" data-key="i">i</button><button class="q-key" data-key="o">o</button><button class="q-key" data-key="p">p</button>
+          </div>
+          <div class="qwerty-row middle">
+            <button class="q-key" data-key="a">a</button><button class="q-key" data-key="s">s</button><button class="q-key" data-key="d">d</button><button class="q-key" data-key="f">f</button><button class="q-key" data-key="g">g</button><button class="q-key" data-key="h">h</button><button class="q-key" data-key="j">j</button><button class="q-key" data-key="k">k</button><button class="q-key" data-key="l">l</button>
+          </div>
+          <div class="qwerty-row bottom">
+            <button class="q-key q-special" id="shiftKey">⇧</button><button class="q-key" data-key="z">z</button><button class="q-key" data-key="x">x</button><button class="q-key" data-key="c">c</button><button class="q-key" data-key="v">v</button><button class="q-key" data-key="b">b</button><button class="q-key" data-key="n">n</button><button class="q-key" data-key="m">m</button><button class="q-key q-delete" data-action="delete">⌫</button>
+          </div>
+        </div>
+
+        <!-- UNIVERSAL BOTTOM BAR -->
+        <div class="keyboard-bottom" id="universalBottomBar">
+          <button class="bottom-key number-key" data-action="switch-number">123 ➔</button>
+          <button class="bottom-key mode-key" data-action="switch-kana">あ/A ⇄</button>
+          <button class="bottom-key space-key" data-action="space">S P A C E</button>
+          <button class="bottom-key key enter-key" data-action="enter" style="font-size: 19px;">↵</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <!-- Side drawer -->
+  <aside class="drawer" id="sideDrawer">
+    <div class="drawer-brand">
+      <span class="drawer-brand-icon">&#129513;</span>
+      <div class="drawer-brand-text">
+        <p class="drawer-brand-title">DeX Gaku</p>
+        <p class="drawer-brand-sub">日本語 N5</p>
+      </div>
+    </div>
+
+    <div class="drawer-divider"></div>
+
+    <button type="button" class="drawer-item drawer-item-expand" id="drawerImportBtn">
+      <span class="drawer-item-icon">&#128229;</span>
+      <span class="drawer-item-label">Import Data</span>
+      <span class="drawer-item-chevron" id="drawerImportChevron">&#8250;</span>
+    </button>
+    <div class="drawer-submenu" id="drawerImportSubmenu">
+      <button type="button" class="drawer-subitem" data-ie-action="import" data-ie-scope="kotoba">Import Kotoba</button>
+      <button type="button" class="drawer-subitem" data-ie-action="import" data-ie-scope="kanji">Import Kanji</button>
+      <button type="button" class="drawer-subitem" data-ie-action="import" data-ie-scope="bunpo">Import Bunpo</button>
+      <button type="button" class="drawer-subitem" data-ie-action="import" data-ie-scope="all">Import All</button>
+    </div>
+
+    <button type="button" class="drawer-item drawer-item-expand" id="drawerExportBtn">
+      <span class="drawer-item-icon">&#128228;</span>
+      <span class="drawer-item-label">Export Data</span>
+      <span class="drawer-item-chevron" id="drawerExportChevron">&#8250;</span>
+    </button>
+    <div class="drawer-submenu" id="drawerExportSubmenu">
+      <button type="button" class="drawer-subitem" data-ie-action="export" data-ie-scope="kotoba">Export Kotoba</button>
+      <button type="button" class="drawer-subitem" data-ie-action="export" data-ie-scope="kanji">Export Kanji</button>
+      <button type="button" class="drawer-subitem" data-ie-action="export" data-ie-scope="bunpo">Export Bunpo</button>
+      <button type="button" class="drawer-subitem" data-ie-action="export" data-ie-scope="all">Export All</button>
+    </div>
+
+    <div class="drawer-divider"></div>
+
+    <div class="drawer-version">
+      <span class="drawer-item-icon">&#8505;&#65039;</span>
+      <div class="drawer-version-text">
+        <p class="drawer-version-label">Versi</p>
+        <p class="drawer-version-value">DeX Gaku v1.0.0</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Script Pengaman Anti-Crash (Failsafe) -->
+  <script>
+    window.restoreStandardHeader = window.restoreStandardHeader || function() {
+      var intro = document.getElementById("detailStandardIntro");
+      var header = document.getElementById("detailHeaderStandard");
+      if (intro) intro.classList.remove("hidden");
+      if (header) header.classList.remove("hidden");
+    };
+    window.hideStandardHeader = window.hideStandardHeader || function() {
+      var intro = document.getElementById("detailStandardIntro");
+      var header = document.getElementById("detailHeaderStandard");
+      if (intro) intro.classList.add("hidden");
+      if (header) header.classList.add("hidden");
+    };
+  </script>
+
+  <!-- Daftar Script Aplikasi -->
+  <script src="kana-data.js"></script>
+  <script src="kana-render.js"></script>
+  <script src="kanji-data.js"></script>
+  <script src="kanji-render.js"></script>
+  <script src="kosakata-data.js"></script>
+  <script src="kosakata-render.js"></script>
+  <script src="bunpo-data.js"></script>
+  <script src="bunpo-render.js"></script>
+  <script src="user-data-store.js"></script>
+  <script src="tambah-data-render.js"></script>
+  <script src="rangkuman-data.js"></script>
+  <script src="rangkuman-render.js"></script>
+  <script src="import-export-render.js"></script>
+  <script src="streak.js"></script>
+  <script src="quiz-render.js"></script>
+  <script src="quiz-kana.js"></script>
+  <script src="quiz-kanji.js"></script>
+  <script src="quiz-kosakata.js"></script>
+  <script src="quiz-bunpo-data.js"></script>
+  <script src="quiz-bunpo.js"></script>
+  <script src="quiz-campuran.js"></script>
+  <script src="ai-sensei.js"></script>
+
+  
+  <!-- Penambahan ?v=2 untuk membobol cache script simulasi & app -->
+  <script src="simulasi-data.js?v=2"></script>
+  <script src="simulasi-render.js?v=2"></script>
+  <script src="riwayat-render.js"></script>
+  <script src="drawer.js"></script>
+  <script src="app.js?v=2"></script>
+  
+  <!-- SCRIPT TERJEMAHAN (BARU) -->
+  <script src="terjemahan.js"></script>
+</body>
 </html>

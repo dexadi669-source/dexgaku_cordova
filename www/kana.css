@@ -1,0 +1,243 @@
+/* =====================================================
+   kana.css
+   Semua gaya untuk halaman Hiragana & Katakana.
+   Dipisah dari styles.css supaya lebih mudah diedit.
+   Dimuat lewat <link> di index.html, setelah styles.css.
+   ===================================================== */
+
+/* =================================================
+   HALAMAN HIRAGANA / KATAKANA
+   ================================================= */
+
+/* ---------- Header hero (gambar + judul + deskripsi) ---------- */
+
+.kana-hero {
+  position: relative;
+  text-align: left;
+  background-color: transparent; /*[span_1](start_span)[span_1](end_span) */
+  
+  /* 1. Ubah border-radius menjadi lebih besar (misal 40px atau 48px) agar lengkungannya lebih tegas membulat */
+  border-radius: 0 0 48px 48px; 
+  
+  /* 2. Perbesar nilai negatif pada margin atas. Awalnya -20px[span_2](start_span)[span_2](end_span). */
+  /* Ubah menjadi -28px atau -32px untuk menarik background pastel mentok ke atas dan menutupi gap. */
+  margin: -50px calc(-50vw + 50%) 0; 
+  
+  /* 3. Tambahkan padding-top agar tombol kembali (back) dan teks tidak ikut terpotong saat area ditarik ke atas. */
+  padding: 24px 20px 32px; 
+  
+  overflow: hidden; /*[span_3](start_span)[span_3](end_span) */
+}
+
+.kana-hero p, .kana-hero h1, .kana-hero h2{ text-align: left; }
+/* Gambar dekoratif (kipas, lentera, ubin huruf) ditempel sebagai elemen
+   <img> dengan tinggi TETAP dan diposisikan absolute menutupi hero, alih-
+   alih background-image. Ini sengaja: kalau dipasang lewat background,
+   tinggi gambar akan ikut meregang mengikuti tinggi konten teks (yang
+   berubah-ubah tergantung lebar layar & ukuran font tiap HP), sehingga
+   elemen dekoratif bisa membesar tak wajar atau malah terpotong.
+   Dengan <img> + object-fit: cover pada kotak bertinggi tetap, gambar
+   selalu proporsional berapa pun panjang deskripsinya. */
+.kana-hero-bg{
+  position: absolute; top: 0; left: 0; right: 0; height: 230px;
+  width: 100%; object-fit: cover; object-position: center top;
+  pointer-events: none; user-select: none; z-index: 0;
+}
+.kana-hero > *:not(.kana-hero-bg){ position: relative; z-index: 1; }
+
+/* Katakana pakai aksen biru; ditandai lewat kelas pada .kana-context-katakana */
+.kana-context-katakana .kana-hero-badge{
+  background: linear-gradient(150deg, #4FA8D8, #2E7FB8);
+  box-shadow: 0 8px 18px rgba(46,127,184,0.35);
+}
+.kana-context-katakana .kana-tab.active{
+  background: linear-gradient(150deg, #4FA8D8, #2E7FB8);
+  box-shadow: 0 4px 12px rgba(46,127,184,0.3);
+}
+.kana-context-katakana .kana-count-pill,
+.kana-context-katakana .kana-group-count{
+  background: #E6F2FA; color: #2E7FB8;
+}
+.kana-context-katakana .kana-cell-filled:active,
+.kana-context-katakana .kana-cell.tap{
+  background: #E6F2FA;
+}
+
+.kana-hero-back{
+  display: inline-flex; align-items: center; gap: 6px;
+  margin: 0; /* jangan sampai ada margin:auto yang menariknya ke tengah */
+  background: #fff; border: none; border-radius: 999px;
+  padding: 9px 16px 9px 12px; font-weight: 800; font-size: 0.85rem;
+  color: #e6395b; box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+  left: -10px;
+  top: -10px;
+}
+.kana-context-katakana .kana-hero-back{ color: #2E7FB8; }
+.kana-hero-back svg{ display: block; }
+
+.kana-hero-top{
+  display: flex; align-items: center; gap: 14px; margin-top: 16px;
+}
+.kana-hero-badge{
+  width: 64px; height: 64px; border-radius: 20px; flex-shrink: 0;
+  background: linear-gradient(150deg, #F2635A, #E6395B);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 2rem; font-weight: 800;
+  box-shadow: 0 8px 18px rgba(230,57,91,0.35);
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.kana-hero-titlewrap{ min-width: 0; }
+.kana-hero-title{
+  font-size: 1.7rem; font-weight: 900; color: #1c1638; margin: 0; line-height: 1.1;
+}
+.kana-hero-reading{
+  font-size: 1rem; color: #8a5a5a; margin: 2px 0 0;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.kana-context-katakana .kana-hero-reading{ color: #4a7590; }
+
+.kana-hero-desc{
+  font-size: 0.86rem; color: #5a5f78; line-height: 1.55; margin: 14px 0 0;
+}
+
+/* ---------- Ilustrasi lama (tidak dipakai lagi: gambar sudah jadi latar hero) ---------- */
+.kana-hero-illustration{ display: none; }
+
+/* ---------- Kartu "Total Huruf" ---------- */
+
+.kana-total-card{
+  display: none; /* kartu "Total Huruf" dihapus dari tampilan sesuai permintaan */
+}
+.kana-total-icon{
+  width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0;
+  background: #FFE9E6; color: #E6395B;
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+}
+.kana-context-katakana .kana-total-icon{ background: #E6F2FA; color: #2E7FB8; }
+.kana-total-text{ flex: 1; min-width: 0; }
+.kana-total-label{ font-size: 0.78rem; color: #8a8a9a; margin: 0; }
+.kana-total-value{ font-size: 1.15rem; font-weight: 900; color: #1c1638; margin: 2px 0 0; }
+.kana-total-badge{
+  background: #E8F7E9; color: #2e9e4f; font-size: 0.74rem; font-weight: 800;
+  border-radius: 999px; padding: 5px 12px; white-space: nowrap; flex-shrink: 0;
+}
+.kana-total-arrow{ display: none; } /* kartu ini tidak bisa diklik, jadi panah dihilangkan */
+
+/* ---------- Baris tab (Seion / Dakuon / Handakuon / Yoon) ----------
+   Bisa digeser ke samping (overflow-x) supaya tab Yoon tidak lagi
+   terpotong tak terjangkau di layar sempit. */
+
+.kana-tabs{
+  display: flex; gap: 8px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 16px 20px 4px; margin: 0 -20px;
+}
+.kana-tabs::-webkit-scrollbar{ display: none; }
+.kana-tab{
+  flex: 1 1 0; min-width: max-content; border: none; border-radius: 999px;
+  padding: 10px 14px; background: #f1eef0; color: #6a6a78;
+  font-weight: 800; font-size: 0.86rem; white-space: nowrap;
+  text-align: center; cursor: pointer; scroll-snap-align: start;
+}
+.kana-tab.active{
+  background: linear-gradient(150deg, #F2635A, #E6395B); color: #fff;
+  box-shadow: 0 4px 12px rgba(230,57,91,0.3);
+}
+.kana-tabs{ scroll-snap-type: x proximity; }
+.kana-tabs:first-child{ padding-left: 20px; }
+.kana-tabs::after{ content: ""; flex: 0 0 4px; } /* sedikit ruang napas di ujung kanan */
+
+/* ---------- Kartu pembungkus tiap grup huruf ---------- */
+
+.kana-group-card{
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; border-radius: 18px; padding: 14px 16px;
+  margin: 14px 0 12px;
+  box-shadow: 0 4px 14px rgba(20,20,40,0.05);
+}
+.kana-group-icon{
+  width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+  background: #FFF1EE; display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.kana-context-katakana .kana-group-icon{ background: #E6F2FA; }
+.kana-group-headtext{ flex: 1; min-width: 0; }
+.kana-group-title{ font-weight: 800; font-size: 1rem; color: #1c1638; margin: 0; }
+.kana-group-desc{ font-size: 0.78rem; color: #8a8a9a; margin: 1px 0 0; }
+.kana-count-pill{
+  background: #FFE9E6; color: #E6395B; font-size: 0.76rem; font-weight: 800;
+  border-radius: 999px; padding: 4px 11px; white-space: nowrap; flex-shrink: 0;
+}
+
+/* Panel tempat isi tabel/grid huruf disuntikkan lewat JS */
+.kana-panel{ min-height: 60px; }
+
+/* ---------- Tabel Seion (header kolom + header baris) ---------- */
+
+.kana-table{
+  border-radius: 18px; overflow: hidden;
+  box-shadow: 0 4px 14px rgba(20,20,40,0.05);
+  margin-bottom: 20px;
+}
+.kana-table-row{
+  display: grid; grid-template-columns: 15% repeat(5, 1fr);
+}
+.kana-table-cell{
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 9px 2px; background: #fff; border: 1px solid #f7f0ef;
+  min-height: 56px; box-sizing: border-box;
+}
+.kana-col-head{
+  background: #FFF1EE; color: #E6395B; font-weight: 800; font-size: 0.82rem;
+}
+.kana-context-katakana .kana-col-head{ background: #E6F2FA; color: #2E7FB8; }
+.kana-row-label{
+  background: #FFF6F4; color: #c85a6a; font-weight: 800; font-size: 0.72rem;
+}
+.kana-context-katakana .kana-row-label{ background: #F0F8FC; color: #3f7fa0; }
+.kana-row-label-empty{ background: #FFF1EE; }
+.kana-context-katakana .kana-row-label-empty{ background: #E6F2FA; }
+
+.kana-cell-empty{ background: #fafafa; color: #d8d8de; font-size: 0.9rem; }
+.kana-cell-blank{ background: transparent; border-color: transparent; box-shadow: none; }
+
+/* Ukuran huruf & romaji di dalam sel tabel Seion dibuat fluid (clamp)
+   supaya tetap muat di kolom sempit tanpa perlu geser layar. */
+.kana-cell-filled .kana-char{
+  font-size: clamp(1.15rem, 5.6vw, 1.5rem); font-weight: 700; color: #2a2438; line-height: 1.2;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.kana-cell-filled .kana-romaji{ font-size: 0.68rem; color: #a5a5b2; margin-top: 1px; }
+.kana-cell-filled:active{ background: #FFF1EE; }
+.kana-context-katakana .kana-cell-filled:active{ background: #E6F2FA; }
+.kana-cell-special .kana-char{ color: #E6395B; }
+.kana-context-katakana .kana-cell-special .kana-char{ color: #2E7FB8; }
+
+/* ---------- Grid biasa (Dakuon/Handakuon/Yoon) ---------- */
+
+.kana-grid{
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 9px; margin-bottom: 20px;
+}
+.kana-cell{
+  background: #fff; border-radius: 16px; padding: 12px 4px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 3px 10px rgba(20,20,40,0.05);
+  min-height: 64px;
+}
+.kana-cell .kana-char{
+  font-size: clamp(1.15rem, 5.6vw, 1.5rem); font-weight: 700; color: #2a2438;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.kana-cell .kana-char-double{ font-size: clamp(0.95rem, 4.6vw, 1.2rem); }
+.kana-cell .kana-romaji{ font-size: 0.68rem; color: #a5a5b2; margin-top: 2px; }
+.kana-cell:active{ background: #FFF1EE; }
+.kana-context-katakana .kana-cell:active{ background: #E6F2FA; }
+.kana-cell.empty{
+  visibility: hidden; pointer-events: none; box-shadow: none; background: transparent;
+}
+
+@media (max-width: 480px){
+  .kana-grid{ grid-template-columns: repeat(5, 1fr); gap: 8px; }
+}

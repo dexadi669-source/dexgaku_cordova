@@ -1,0 +1,731 @@
+/* =====================================================
+   DeX Gaku — simulasi.css (CBT JFT-Basic Style + Menu)
+   ===================================================== */
+
+:root {
+  --cbt-green: #15803d;
+  --cbt-gray: #64748b;
+  --cbt-flag: #dc2626;
+  --cbt-blue: #2563eb;
+  
+  /* Warna Menu */
+  --sim-blue: #2c6fdb;
+  --sim-blue-soft: #eaf2fe;
+  --sim-purple: #9c27b0;
+  --sim-teal: #14a89a;
+  --sim-red: #e0574a;
+  --sim-green: #3c9b4a;
+}
+
+/* =====================================================
+   1. MENU UTAMA SIMULASI
+   ===================================================== */
+
+.sim-menu-wrap {
+  position: relative;
+  min-height: 100vh;
+  padding: 0 0 40px;
+  margin: -56px -20px -40px;
+  animation: simFadeIn 0.3s ease;
+  background-color: #f1f5f9; /* Background abu-abu terang */
+}
+
+@keyframes simFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes simSlideUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes simPopIn { from { opacity: 0; transform: scale(0.92) translateY(6px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+.sim-hero {
+  position: relative;
+  background-color: #eaf0ff;
+  border-radius: 0 0 36px 36px;
+  margin: 0 calc(-50vw + 50%) 0;
+  padding: 42px 20px 46px;
+  text-align: left;
+  overflow: hidden;
+}
+.sim-hero p, .sim-hero h1 { text-align: left; }
+
+.sim-hero > *:not(.sim-hero-bg) { position: relative; z-index: 1; }
+
+.sim-hero-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  background: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 16px 9px 12px;
+  font-weight: 800;
+  font-size: 13.5px;
+  color: #4A5FC1;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+}
+.sim-hero-back:active { transform: scale(0.96); }
+
+.sim-hero-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  animation: simSlideUp 0.4s ease 0.05s backwards;
+}
+.sim-hero-badge {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  background: linear-gradient(150deg, #6B85D8, #4A5FC1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28px;
+  box-shadow: 0 8px 18px rgba(74,95,193,0.35);
+}
+.sim-hero-titlewrap { min-width: 0; }
+.sim-hero-title { font-size: 24px; font-weight: 900; color: #1c1638; margin: 0; line-height: 1.15; }
+.sim-hero-reading { font-size: 13.5px; color: #5a6590; margin: 2px 0 0; }
+.sim-hero-desc {
+  font-size: 13.5px;
+  color: #4a4f68;
+  line-height: 1.55;
+  margin: 14px 0 0;
+  animation: simSlideUp 0.4s ease 0.1s backwards;
+}
+
+/* Kartu ringkasan 4 kolom */
+.sim-summary {
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px 6px;
+  display: flex;
+  align-items: stretch;
+  box-shadow: 0 8px 24px rgba(74,95,193,0.14);
+  margin: -38px 20px 20px;
+  position: relative;
+  z-index: 2;
+  animation: simSlideUp 0.4s ease 0.15s backwards;
+}
+.sim-sum-box { flex: 1; text-align: center; padding: 0 2px; }
+.sim-sum-ico {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: #EEF1FD;
+  color: #4A5FC1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin: 0 auto 6px;
+}
+.sim-sum-val { font-size: 14.5px; font-weight: 900; color: #1c1638; display: block; line-height: 1.2; }
+.sim-sum-lbl { font-size: 9.5px; color: #8a8a9a; }
+.sim-sum-div { width: 1px; background: #f0f0f0; margin: 2px 0; }
+
+.sim-content { padding: 0 20px; }
+
+.sim-packet-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 22px;
+  position: relative;
+  box-shadow: 0 6px 20px rgba(20,30,60,0.06);
+  border: 1px solid rgba(20,30,60,0.04);
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: simSlideUp 0.4s ease forwards;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.sim-packet-card:active { transform: scale(0.985); }
+.sim-packet-card.featured {
+  border: 1.5px solid rgba(44,111,219,0.22);
+  box-shadow: 0 10px 26px rgba(44,111,219,0.14);
+}
+
+.sim-packet-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+.b1 { background: linear-gradient(135deg, #4f95e8, #2c6fdb); }
+
+.sim-packet-title { font-size: 17.5px; font-weight: 800; color: #16213f; margin: 0; }
+
+.sim-packet-grid-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 16px 0;
+}
+.sim-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 10px 4px;
+  background: #f7f9fd;
+  border-radius: 12px;
+  border: 1px solid rgba(20,30,60,0.04);
+}
+.sim-grid-ic { font-size: 15px; }
+.sim-grid-val { font-size: 11px; font-weight: 800; color: #384866; text-align: center; letter-spacing: -0.1px; }
+
+.sim-packet-start-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #4f95e8, #2c6fdb);
+  color: #fff;
+  border: none;
+  padding: 15px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 8px 18px rgba(44,111,219,0.32);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.sim-packet-start-btn:active { transform: scale(0.96); box-shadow: 0 4px 10px rgba(44,111,219,0.28); }
+
+/* =====================================================
+   2. LAYAR KONFIRMASI
+   ===================================================== */
+
+.sim-confirm-card {
+  background: #fff;
+  border-radius: 26px;
+  padding: 26px 24px;
+  box-shadow: 0 10px 30px rgba(20,30,60,0.08);
+  animation: simSlideUp 0.32s ease;
+  margin: 20px;
+}
+.sim-confirm-badge {
+  display: inline-block;
+  padding: 6px 15px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.14);
+}
+.sim-confirm-title { font-size: 22px; font-weight: 900; color: #16213f; margin: 0 0 8px; }
+.sim-confirm-sub { font-size: 13.5px; color: #6b7690; margin: 0 0 22px; line-height: 1.5; }
+
+.sim-confirm-grid { display: flex; flex-direction: column; gap: 16px; margin-bottom: 26px; }
+.sim-confirm-item { display: flex; gap: 14px; align-items: flex-start; }
+.sim-confirm-ic {
+  width: 40px;
+  height: 40px;
+  background: var(--sim-blue-soft);
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.sim-confirm-lbl { font-size: 12px; font-weight: 700; color: #8a93a8; margin-bottom: 2px; }
+.sim-confirm-val { font-size: 15px; font-weight: 800; color: #16213f; }
+
+.sim-confirm-actions { display: flex; gap: 12px; }
+.sim-confirm-btn-back {
+  flex: 1;
+  padding: 15px;
+  border-radius: 999px;
+  border: 1.5px solid #e8ebf1;
+  background: transparent;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #56617a;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.sim-confirm-btn-back:active { background: #f4f6fa; }
+.sim-confirm-btn-start {
+  flex: 2;
+  padding: 15px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #4f95e8, #2c6fdb);
+  color: #fff;
+  border: none;
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(44,111,219,0.32);
+  transition: transform 0.15s ease;
+}
+.sim-confirm-btn-start:active { transform: scale(0.96); }
+
+/* =====================================================
+   3. UJIAN (CBT MODE)
+   ===================================================== */
+
+.sim-exam-root {
+  position: fixed;
+  inset: 0;
+  background: #f1f5f9;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.sim-exam-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #0f172a;
+  color: #fff;
+  z-index: 10;
+}
+.sim-exam-header-left { display: flex; align-items: center; gap: 10px; }
+.sim-exam-title { font-size: 13px; font-weight: 800; color: #f8fafc; }
+.sim-exam-section-pill {
+  font-size: 10px;
+  background: #334155;
+  color: #93c5fd;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.sim-exam-timer {
+  font-size: 13px;
+  font-weight: 800;
+  background: #1e293b;
+  color: #38bdf8;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.sim-exam-timer.warn { background: #7f1d1d; color: #fca5a5; }
+
+.sim-exam-body { flex: 1; overflow-y: auto; padding: 16px; }
+
+.sim-your-lang-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.sim-your-lang-btn:active { background: #e2e8f0; }
+
+.sim-question-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.5;
+  background: #fff;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 16px;
+}
+
+.sim-options { display: flex; flex-direction: column; gap: 10px; }
+.sim-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+}
+.sim-option.selected { border-color: var(--cbt-blue); background: #eff6ff; color: #1e40af; }
+.sim-option-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sim-option.selected .sim-option-radio { border-color: var(--cbt-blue); }
+.sim-option.selected .sim-option-radio::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cbt-blue);
+}
+
+.sim-exam-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #fff;
+  border-top: 1px solid #e2e8f0;
+}
+.sim-flag-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.sim-flag-btn.active { background: #fef2f2; border-color: #fca5a5; }
+.sim-nav-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+}
+.sim-nav-btn.prev { background: #e2e8f0; color: #475569; }
+.sim-nav-btn.prev[disabled] { opacity: 0.4; cursor: not-allowed; }
+.sim-nav-btn.next { background: #16a34a; color: #fff; }
+.sim-nav-btn.finish { background: #dc2626; color: #fff; }
+
+/* =====================================================
+   4. MODAL / POPUP
+   ===================================================== */
+
+.sim-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,20,35,0.5);
+  backdrop-filter: blur(2px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: simFadeIn 0.2s ease;
+}
+.sim-modal-box {
+  background: #fff;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 22px;
+  padding: 22px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  animation: simPopIn 0.25s ease;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+.sim-modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.sim-modal-head h3 { margin: 0; font-size: 18px; font-weight: 800; color: #16213f; }
+.sim-modal-close {
+  background: #f1f3f7;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 800;
+  color: #888;
+  cursor: pointer;
+}
+.sim-modal-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+.sim-modal-tab {
+  flex: 1;
+  padding: 9px;
+  border: none;
+  border-radius: 10px;
+  background: #f1f3f7;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #666;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.sim-modal-tab.active { background: #16213f; color: #fff; }
+.sim-modal-body { overflow-y: auto; }
+
+.sim-num-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 20px; }
+.sim-num-btn {
+  aspect-ratio: 1;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #334155;
+  cursor: pointer;
+}
+.sim-num-btn.answered { background: #64748b; color: #fff; border-color: #64748b; }
+.sim-num-btn.current { background: #22c55e; color: #fff; border-color: #16a34a; }
+.sim-num-btn.flagged { background: #dc2626; color: #fff; border-color: #b91c1c; }
+
+.sim-modal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #666;
+  justify-content: center;
+}
+.sim-legend-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.sim-legend-dot.answered { background: #64748b; }
+.sim-legend-dot.current { background: #22c55e; }
+.sim-legend-dot.flagged { background: #dc2626; }
+.sim-legend-dot.empty { border: 2px solid #e5e8ee; }
+
+/* =====================================================
+   5. HASIL UJIAN (REPORT CARD)
+   ===================================================== */
+
+.sim-result-wrap {
+  position: relative;
+  padding: 10px 4px 40px;
+  margin-top: -30px;
+  animation: simFadeIn 0.3s ease;
+}
+
+.jft-report-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  border: 1px solid #e2e8f0;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.sim-result-status {
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  color: #fff;
+}
+.sim-result-status.pass { background: #16a34a; }
+.sim-result-status.fail { background: #dc2626; }
+
+.sim-result-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+.sim-res-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.sim-res-btn:active { transform: scale(0.97); }
+.sim-res-btn.detail { background: linear-gradient(135deg, #4f95e8, #2c6fdb); color: #fff; box-shadow: 0 8px 18px rgba(44,111,219,0.3); }
+.sim-res-btn.ulangi { background: var(--sim-blue-soft); color: var(--sim-blue); }
+.sim-res-btn.menu { background: #f1f3f7; color: #4a4f68; }
+
+/* Audio Button */
+.sim-audio-btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: var(--cbt-blue);
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(37,99,235,0.2);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.sim-audio-btn:active { transform: scale(0.95); }
+.sim-audio-btn[disabled] { background: #f1f3f7; color: #9099ad; box-shadow: none; cursor: not-allowed; transform: none; }
+
+/* =====================================================
+   6. POPUP KONFIRMASI UMUM
+   ===================================================== */
+
+.sim-confirm-modal-box {
+  background: #fff;
+  border-radius: 26px;
+  padding: 26px;
+  text-align: center;
+  width: 90%;
+  max-width: 320px;
+  animation: simPopIn 0.25s ease;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+.sim-confirm-modal-ic {
+  width: 58px;
+  height: 58px;
+  background: #fff0f0;
+  color: var(--cbt-flag);
+  font-size: 28px;
+  font-weight: 800;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.sim-confirm-modal-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0 0 10px;
+  color: #16213f;
+}
+
+.sim-confirm-modal-desc {
+  font-size: 13.5px;
+  color: #6b7690;
+  margin: 0 0 24px;
+  line-height: 1.55;
+}
+
+.sim-confirm-modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.sim-btn-lanjut {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 15px;
+  border-radius: 999px;
+  font-weight: 800;
+  flex: 1;
+  cursor: pointer;
+  font-size: 13.5px;
+  transition: background 0.15s ease;
+}
+.sim-btn-lanjut:active { background: #e2e8f0; }
+
+.sim-btn-akhiri {
+  background: linear-gradient(135deg, #ea7a6d, #e0574a);
+  color: #fff;
+  border: none;
+  padding: 15px;
+  border-radius: 999px;
+  font-weight: 800;
+  flex: 1;
+  cursor: pointer;
+  font-size: 13.5px;
+  box-shadow: 0 6px 14px rgba(224,87,74,0.28);
+  transition: transform 0.15s ease;
+}
+.sim-btn-akhiri:active { transform: scale(0.96); }
+
+/* Tombol Primary (Biru) - untuk konfirmasi positif seperti Translate */
+.sim-btn-primary {
+  background: linear-gradient(135deg, #4f95e8, #2c6fdb);
+  color: #fff;
+  border: none;
+  padding: 15px;
+  border-radius: 999px;
+  font-weight: 800;
+  flex: 1;
+  cursor: pointer;
+  font-size: 13.5px;
+  box-shadow: 0 6px 14px rgba(44,111,219,0.28);
+  transition: transform 0.15s ease;
+}
+.sim-btn-primary:active { transform: scale(0.96); }
+
+/* =====================================================
+   7. CBT JFT-BASIC — SHARP EDGE & GREEN HEADER OVERRIDE
+   ===================================================== */
+
+.sim-exam-header { background: #15803d !important; }
+.sim-exam-section-pill { background: #166534 !important; color: #bbf7d0 !important; }
+.sim-exam-timer { background: #14532d !important; color: #86efac !important; }
+.sim-exam-timer.warn { background: #7f1d1d !important; color: #fca5a5 !important; }
+
+/* SHARP EDGE: HANYA untuk Halaman Ujian (sim-exam-root) dan Modal di dalamnya */
+.sim-exam-root,
+.sim-exam-root *,
+.sim-modal-overlay,
+.sim-modal-overlay *,
+.sim-section-confirm-box,
+.sim-section-confirm-box * {
+  border-radius: 0 !important;
+}
+
+/* =====================================================
+   ROUNDED: HANYA untuk Halaman Menu Utama & Konfirmasi
+   ===================================================== */
+
+/* Menu Utama */
+.sim-menu-wrap .sim-hero { border-radius: 0 0 36px 36px !important; }
+.sim-menu-wrap .sim-hero-back { border-radius: 999px !important; }
+.sim-menu-wrap .sim-hero-badge { border-radius: 20px !important; }
+.sim-menu-wrap .sim-summary { border-radius: 20px !important; }
+.sim-menu-wrap .sim-packet-card { border-radius: 22px !important; }
+.sim-menu-wrap .sim-packet-badge { border-radius: 999px !important; }
+.sim-menu-wrap .sim-packet-start-btn { border-radius: 999px !important; }
+.sim-menu-wrap .sim-grid-item { border-radius: 12px !important; }
+
+/* Halaman Konfirmasi Aturan */
+.sim-confirm-card { border-radius: 26px !important; margin: 16px !important; padding: 20px !important; }
+.sim-confirm-badge { border-radius: 999px !important; }
+.sim-confirm-ic { border-radius: 13px !important; background: #dcfce7 !important; color: #15803d !important; }
+.sim-confirm-btn-back, .sim-confirm-btn-start { border-radius: 999px !important; }
+
+/* Modal Daftar Soal & Confirm (tetap sharp dioverride, tidak masalah di exam page) */
+.sim-modal-box, .sim-modal-tab, .sim-num-btn, .sim-modal-close, .sim-confirm-modal-box { border-radius: 0 !important; }
+
+/* Merapikan Halaman Konfirmasi Aturan Ujian */
+.sim-confirm-grid { gap: 12px !important; }
+.sim-confirm-item { background: #f8fafc; padding: 12px; border-left: 4px solid #15803d; }
+.sim-confirm-title { font-size: 20px !important; margin-bottom: 12px !important; }
+.sim-confirm-actions { margin-top: 20px; }
+
+/* Tab Section Terkunci */
+.sim-modal-tab.locked { background: #e2e8f0 !important; color: #94a3b8 !important; cursor: not-allowed !important; opacity: 0.7; position: relative; }
+.sim-modal-tab.locked::after { content: ""; margin-left: 4px; }
+.sim-modal-tab.current-section { background: #15803d !important; color: #fff !important; }
+.sim-modal-tab.upcoming { background: #fef3c7 !important; color: #92400e !important; border: 1px dashed #f59e0b !important; }
+
+/* Pop-up Konfirmasi Pindah Section */
+.sim-section-confirm-box {
+  background: #fff;
+  padding: 24px;
+  max-width: 340px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  animation: simPopIn 0.25s ease;
+  border-top: 5px solid #dc2626;
+}
+.sim-section-confirm-ic { width: 60px; height: 60px; background: #fef2f2; color: #dc2626; font-size: 28px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; border: 2px solid #fecaca; }
+.sim-section-confirm-title { font-size: 18px; font-weight: 800; color: #0f172a; margin: 0 0 12px; }
+.sim-section-confirm-desc { font-size: 13.5px; color: #475569; line-height: 1.6; margin: 0 0 20px; text-align: left; }
+.sim-section-confirm-desc strong { color: #dc2626; }
+.sim-section-confirm-actions { display: flex; gap: 10px; }
+.sim-btn-batal { flex: 1; padding: 14px; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; font-weight: 800; font-size: 13px; cursor: pointer; }
+.sim-btn-batal:active { background: #e2e8f0; }
+.sim-btn-pindah { flex: 1; padding: 14px; background: #dc2626; color: #fff; border: none; font-weight: 800; font-size: 13px; cursor: pointer; }
+.sim-btn-pindah:active { background: #b91c1c; }

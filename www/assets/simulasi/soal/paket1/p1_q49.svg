@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#FDFBF7" />
+
+  <!-- Judul Tabel -->
+  <text x="400" y="40" font-family="sans-serif" font-size="22" fill="#333" font-weight="bold" text-anchor="middle">【時間割】 授業スケジュール</text>
+
+  <!-- Frame Tabel -->
+  <rect x="80" y="70" width="640" height="330" fill="#FFFFFF" stroke="#008080" stroke-width="3" rx="8"/>
+
+  <!-- Header Tabel -->
+  <path d="M 80 78 C 80 73, 84 70, 89 70 L 711 70 C 716 70, 720 73, 720 78 L 720 120 L 80 120 Z" fill="#008080" />
+  <text x="180" y="102" font-family="sans-serif" font-size="18" fill="#FFF" font-weight="bold" text-anchor="middle">時間</text>
+  <text x="330" y="102" font-family="sans-serif" font-size="18" fill="#FFF" font-weight="bold" text-anchor="middle">月曜日</text>
+  <text x="450" y="102" font-family="sans-serif" font-size="18" fill="#FFF" font-weight="bold" text-anchor="middle">火曜日</text>
+  <text x="570" y="102" font-family="sans-serif" font-size="18" fill="#FFF" font-weight="bold" text-anchor="middle">水曜日</text>
+  <text x="660" y="102" font-family="sans-serif" font-size="18" fill="#FFF" font-weight="bold" text-anchor="middle">木曜日</text>
+
+  <!-- Baris 1: 10:00 - 11:30 -->
+  <line x1="80" y1="210" x2="720" y2="210" stroke="#E5E5E5" stroke-width="2"/>
+  <text x="180" y="170" font-family="sans-serif" font-size="16" fill="#333" font-weight="bold" text-anchor="middle">10:00 - 11:30</text>
+
+  <!-- Pelajaran 日本語1 di 月 & 木 -->
+  <rect x="270" y="130" width="120" height="70" fill="#E8F5E9" stroke="#2ECC71" stroke-width="2" rx="6"/>
+  <text x="330" y="172" font-family="sans-serif" font-size="18" fill="#27AE60" font-weight="bold" text-anchor="middle">日本語 1</text>
+
+  <rect x="610" y="130" width="100" height="70" fill="#E8F5E9" stroke="#2ECC71" stroke-width="2" rx="6"/>
+  <text x="660" y="172" font-family="sans-serif" font-size="18" fill="#27AE60" font-weight="bold" text-anchor="middle">日本語 1</text>
+
+  <!-- Baris 2: 13:00 - 14:30 -->
+  <text x="180" y="310" font-family="sans-serif" font-size="16" fill="#333" font-weight="bold" text-anchor="middle">13:00 - 14:30</text>
+  
+  <rect x="390" y="270" width="120" height="70" fill="#FFF3E0" stroke="#FF9800" stroke-width="2" rx="6"/>
+  <text x="450" y="312" font-family="sans-serif" font-size="18" fill="#E65100" font-weight="bold" text-anchor="middle">日本語 2</text>
+
+  <!-- Garis Kolom -->
+  <line x1="260" y1="70" x2="260" y2="400" stroke="#E5E5E5" stroke-width="2"/>
+  <line x1="390" y1="70" x2="390" y2="400" stroke="#E5E5E5" stroke-width="2"/>
+  <line x1="510" y1="70" x2="510" y2="400" stroke="#E5E5E5" stroke-width="2"/>
+  <line x1="610" y1="70" x2="610" y2="400" stroke="#E5E5E5" stroke-width="2"/>
+</svg>

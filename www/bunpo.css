@@ -1,0 +1,578 @@
+/* =====================================================
+   DeX Gaku — bunpo.css
+   Desain halaman Grammar/Bunpo — mengikuti mockup: header
+   hero ilustrasi gunung+sakura, search bar rounded, grid 12
+   kategori pastel bernomor, daftar materi, dan detail materi
+   dengan hero card + 4 blok (Fungsi/Pola/Contoh/Negatif).
+   Dipisah dari styles.css supaya file utama tidak makin panjang.
+   ===================================================== */
+
+:root {
+  --bp-accent: #4f46e5;
+  --bp-accent-dark: #3730a3;
+  --bp-accent-light: #eef0fd;
+  --bp-accent-soft: #e0e2fc;
+  --bp-sky-top: #bfe1f7;
+  --bp-sky-bottom: #e8f3fb;
+}
+
+.bunpo-page { animation: bpPageIn 0.28s ease; }
+@keyframes bpPageIn {
+  from { opacity: 0; transform: translateX(14px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* =====================================================
+   1. HERO HEADER (Level 1 — menu kategori)
+   ===================================================== */
+
+.bunpo-hero {
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, var(--bp-sky-top) 0%, var(--bp-sky-bottom) 100%);
+  border-radius: 0 0 26px 26px; padding: 20px 20px 34px;
+  margin: -16px -16px 0; animation: bpFadeIn 0.35s ease;
+}
+@keyframes bpFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.bunpo-hero-svg { position: absolute; top: 0; right: 0; width: 62%; opacity: 0.9; pointer-events: none; }
+.bunpo-hero-svg-menu { height: 130px; }
+.bunpo-hero-svg-detail { height: 90px; width: 55%; opacity: 0.35; }
+
+.bunpo-hero-back {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%;
+  background: #fff; 
+  border: none; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  color: var(--text-dark);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  cursor: pointer; 
+  z-index: 5;
+  transition: transform .12s ease;
+}
+.bunpo-hero-back:active { transform: scale(0.9); }
+
+.bunpo-hero-text { 
+  position: relative; 
+  z-index: 2; 
+  text-align: center; 
+  padding-top: 18px; /* Tambahan padding agar judul tidak menabrak batas atas karena tombol menjadi absolute */
+  animation: bpSlideUp 0.4s ease 0.05s backwards; 
+}
+@keyframes bpSlideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.bunpo-hero-title {
+  font-size: 1.9rem; font-weight: 900; color: #1c2d4a; margin: 0 0 2px;
+  letter-spacing: 0.5px; font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.bunpo-hero-sub { font-size: 0.92rem; font-weight: 700; color: #3a5378; margin: 0; }
+
+/* =====================================================
+   2. BODY & SEARCH BAR (floating, overlap dikit ke hero)
+   ===================================================== */
+
+.bunpo-body { padding: 0 2px 24px; }
+
+.bunpo-search-box {
+  display: flex; align-items: center; gap: 10px;
+  background: #fff; border-radius: 999px; padding: 14px 19px;
+  box-shadow: 0 8px 22px rgba(20,40,80,0.12); margin: -22px 2px 18px;
+  position: relative; z-index: 3;
+  border: 1.5px solid transparent; transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  animation: bpSlideUp 0.4s ease 0.1s backwards;
+}
+.bunpo-search-box:focus-within {
+  border-color: var(--bp-accent); box-shadow: 0 8px 22px rgba(79,70,229,0.16);
+}
+.bunpo-search-icon { font-size: 1rem; color: #b0b0c0; flex-shrink: 0; }
+.bunpo-search-input {
+  flex: 1; border: none; outline: none; background: transparent;
+  font-size: 0.94rem; color: var(--text-dark); font-family: inherit; min-width: 0;
+}
+.bunpo-search-input::placeholder { color: #b5b5c5; }
+.bunpo-search-clear {
+  background: #f0f0f5; border: none; border-radius: 50%; width: 24px; height: 24px;
+  font-size: 0.72rem; color: #999; cursor: pointer; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0; padding: 0; transition: background 0.15s ease;
+}
+.bunpo-search-clear:active { background: #e2e2ea; }
+
+/* Search box dipakai lagi di Level 2 (daftar materi) tanpa
+   perlu margin-negative floating karena tidak ada hero di sana. */
+.bunpo-subheader + .bunpo-body .bunpo-search-box { margin-top: 4px; }
+
+/* =====================================================
+   3. LEVEL 1 — Grid kategori (2 kolom, pastel, bernomor)
+   ===================================================== */
+
+.bunpo-cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.bunpo-cat-card {
+  position: relative; border-radius: 20px; padding: 16px 14px 15px; cursor: pointer;
+  box-shadow: 0 3px 12px rgba(20,20,50,0.06);
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s ease;
+  opacity: 0; animation: bpCardIn 0.4s ease forwards;
+}
+.bunpo-cat-card:active {
+  transform: scale(1.03) translateY(-2px); box-shadow: 0 8px 18px rgba(20,20,50,0.14);
+}
+@keyframes bpCardIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.bunpo-cat-nomor {
+  position: absolute; top: 12px; left: 12px; min-width: 22px; height: 22px; padding: 0 6px;
+  border-radius: 999px; color: #fff; font-size: 0.72rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.bunpo-cat-icon-circle {
+  width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-size: 1.5rem; margin: 20px 0 10px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
+}
+
+.bunpo-cat-title {
+  font-size: 1.05rem; font-weight: 800; color: #1c2d3f; margin: 0 0 3px;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.bunpo-cat-desc { font-size: 0.78rem; color: #4a5568; margin: 0; opacity: 0.85; }
+.bunpo-cat-arrow {
+  position: absolute; top: 16px; right: 14px; font-size: 1.05rem; color: rgba(30,40,60,0.35);
+}
+
+.bunpo-cat-grid .bunpo-cat-card:nth-child(1) { animation-delay: 0.04s; }
+.bunpo-cat-grid .bunpo-cat-card:nth-child(2) { animation-delay: 0.09s; }
+.bunpo-cat-grid .bunpo-cat-card:nth-child(3) { animation-delay: 0.14s; }
+.bunpo-cat-grid .bunpo-cat-card:nth-child(4) { animation-delay: 0.19s; }
+.bunpo-cat-grid .bunpo-cat-card:nth-child(5) { animation-delay: 0.24s; }
+.bunpo-cat-grid .bunpo-cat-card:nth-child(6) { animation-delay: 0.29s; }
+.bunpo-cat-grid .bunpo-cat-card:nth-child(7) { animation-delay: 0.34s; }
+.bunpo-cat-grid .bunpo-cat-card:nth-child(8) { animation-delay: 0.39s; }
+.bunpo-cat-grid .bunpo-cat-card:nth-child(9) { animation-delay: 0.44s; }
+.bunpo-cat-grid .bunpo-cat-card:nth-child(10) { animation-delay: 0.49s; }
+.bunpo-cat-grid .bunpo-cat-card:nth-child(11) { animation-delay: 0.54s; }
+.bunpo-cat-grid .bunpo-cat-card:nth-child(12) { animation-delay: 0.59s; }
+
+/* =====================================================
+   4. HEADER SEDERHANA (Level 2 & 3 — tombol back + judul kecil)
+   ===================================================== */
+
+.bunpo-subheader { padding: 4px 2px 14px; animation: bpFadeIn 0.25s ease; }
+.bunpo-subheader-back {
+  background: none; border: none; padding: 0; font-size: 1rem; font-weight: 800;
+  color: var(--bp-accent-dark); cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+}
+.bunpo-subheader-back:active { opacity: 0.6; }
+
+/* =====================================================
+   5. LEVEL 2 — Header kategori + daftar materi
+   ===================================================== */
+
+.bunpo-cat-header {
+  display: flex; align-items: center; gap: 13px; border-radius: 18px;
+  padding: 15px 16px; margin-bottom: 16px; animation: bpSlideUp 0.3s ease;
+}
+.bunpo-cat-header-icon {
+  width: 48px; height: 48px; border-radius: 15px; flex-shrink: 0; font-size: 1.45rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.bunpo-cat-header-text { min-width: 0; }
+.bunpo-cat-header-title {
+  font-size: 1.1rem; font-weight: 800; color: var(--text-dark); margin: 0 0 2px;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.bunpo-cat-header-desc { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+
+.bunpo-materi-card {
+  background: #fff; border-radius: 18px; padding: 15px 16px; margin-bottom: 10px;
+  cursor: pointer; box-shadow: 0 3px 12px rgba(20,20,40,0.05);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+  opacity: 0; animation: bpSlideUp 0.32s ease forwards;
+}
+.bunpo-materi-card:active {
+  transform: scale(1.015); box-shadow: 0 6px 16px rgba(20,20,40,0.09);
+}
+.bunpo-materi-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px; }
+.bunpo-materi-nomor {
+  font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 999px;
+}
+.bunpo-materi-arrow { color: #c8c8d8; font-size: 1rem; transition: transform 0.15s ease; }
+.bunpo-materi-card:active .bunpo-materi-arrow { transform: translateX(2px); }
+
+.bunpo-materi-judul {
+  font-size: 1.35rem; font-weight: 900; color: var(--text-dark); margin: 0 0 4px;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.bunpo-materi-sub { font-size: 0.85rem; color: var(--text-muted); margin: 0 0 12px; line-height: 1.4; }
+.bunpo-materi-preview-row { padding-top: 11px; border-top: 1px dashed #ececf4; }
+.bunpo-materi-preview {
+  font-size: 0.95rem; font-weight: 700;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+
+/* =====================================================
+   6. LEVEL 3 — Detail materi
+   ===================================================== */
+
+.bunpo-detail-hero {
+  position: relative; overflow: hidden; border-radius: 22px; padding: 26px 22px;
+  text-align: center; margin-bottom: 16px; box-shadow: 0 10px 26px rgba(79,70,229,0.24);
+  animation: bpSlideUp 0.35s ease;
+}
+.bunpo-detail-judul {
+  position: relative; font-size: 1.8rem; font-weight: 900; color: #fff; margin: 0 0 6px;
+  letter-spacing: 0.3px; font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.bunpo-detail-preview {
+  position: relative; display: inline-block; font-size: 0.92rem; font-weight: 700;
+  color: var(--bp-accent-dark); margin: 0; background: rgba(255,255,255,0.92);
+  padding: 6px 16px; border-radius: 999px;
+}
+
+/* Materi dari Tambah Data / Import biasanya diberi warna teks
+   oranye/ungu sebagai penanda -- tapi di kartu judul detail ini
+   latarnya sudah gradient warna kategori, jadi teks putih
+   dipertahankan supaya tetap terbaca. Penanda cukup diwakili
+   oleh badge di sampingnya. */
+.bunpo-detail-judul.tambah-data-text-user,
+.bunpo-detail-judul.ie-text-import {
+  color: #fff !important;
+}
+.bunpo-detail-judul .tambah-data-badge,
+.bunpo-detail-judul .ie-badge-import {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+}
+
+.bunpo-block {
+  background: #fff; border-radius: 18px; padding: 18px 19px; margin-bottom: 12px;
+  box-shadow: 0 3px 14px rgba(20,20,40,0.045);
+  opacity: 0; animation: bpSlideUp 0.35s ease forwards;
+}
+.bunpo-block-fungsi { animation-delay: 0.06s; }
+.bunpo-block-pola { animation-delay: 0.12s; }
+.bunpo-block-contoh { animation-delay: 0.18s; }
+.bunpo-block-negatif { animation-delay: 0.24s; }
+
+.bunpo-block-label {
+  display: flex; align-items: center; gap: 9px; font-size: 0.92rem; font-weight: 800;
+  color: var(--text-dark); margin: 0 0 13px;
+}
+.bunpo-block-badge {
+  width: 30px; height: 30px; border-radius: 10px; display: flex; align-items: center;
+  justify-content: center; font-size: 0.95rem; flex-shrink: 0;
+}
+.badge-fungsi { background: #e0eefd; }
+.badge-pola { background: var(--bp-accent-light); }
+.badge-contoh { background: #e2f8ec; }
+.badge-negatif { background: #fde4e4; }
+
+.bunpo-block-text { font-size: 0.92rem; color: #444; line-height: 1.6; margin: 0; }
+
+.bunpo-pola-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.bunpo-pola-text {
+  font-size: 1.2rem; font-weight: 800; color: var(--bp-accent-dark); margin: 0;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif; line-height: 1.5; flex: 1; min-width: 0;
+}
+.bunpo-pola-chip {
+  font-size: 0.7rem; font-weight: 800; padding: 4px 10px; border-radius: 999px;
+  white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.bunpo-pola-keterangan { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; margin: 8px 0 0; }
+
+.bunpo-example-card {
+  background: linear-gradient(155deg, #f6f7ff 0%, #eef0fd 100%);
+  border-radius: 14px; padding: 15px 17px;
+  border-left: 4px solid var(--bp-accent);
+}
+.bunpo-example-card.negative {
+  background: linear-gradient(155deg, #fef5f5 0%, #fde9e9 100%);
+  border-left-color: #dc4a4a;
+}
+.bunpo-example-kanji {
+  font-size: 1.15rem; font-weight: 800; color: var(--text-dark); margin: 0 0 4px;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif; line-height: 1.5;
+}
+.bunpo-example-hiragana { font-size: 0.85rem; color: #7a7a8a; margin: 0 0 2px; }
+.bunpo-example-romaji { font-size: 0.82rem; color: #9a9aaa; font-style: italic; margin: 0 0 8px; }
+.bunpo-example-arti { font-size: 0.9rem; color: #333; font-weight: 600; margin: 0; }
+
+/* =====================================================
+   7. PENCARIAN GLOBAL
+   ===================================================== */
+
+.bunpo-search-heading { font-size: 1rem; font-weight: 800; color: var(--text-dark); margin: 4px 0 2px; }
+.bunpo-search-count { font-size: 0.8rem; color: var(--text-muted); margin: 0 0 14px; }
+.bunpo-search-empty {
+  text-align: center; padding: 44px 20px; color: #b0b0c0; font-size: 0.9rem;
+  background: #fff; border-radius: 18px;
+}
+
+.bunpo-search-result-card {
+  display: flex; align-items: center; gap: 13px; background: #fff; border-radius: 16px;
+  padding: 14px 15px; margin-bottom: 9px; cursor: pointer;
+  box-shadow: 0 3px 12px rgba(20,20,40,0.045);
+  transition: transform 0.14s ease;
+}
+.bunpo-search-result-card:active { transform: scale(0.98); }
+.bunpo-search-result-icon {
+  width: 42px; height: 42px; border-radius: 13px; flex-shrink: 0;
+  background: var(--bp-accent-light); display: flex; align-items: center;
+  justify-content: center; font-size: 1.15rem;
+}
+.bunpo-search-result-text { flex: 1; min-width: 0; }
+.bunpo-search-result-judul { font-size: 1rem; font-weight: 800; color: var(--text-dark); margin: 0 0 2px; }
+.bunpo-search-result-sub {
+  font-size: 0.82rem; color: var(--text-muted); margin: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* =====================================================
+   8. RESPONSIVE
+   ===================================================== */
+
+@media (min-width: 700px) {
+  .bunpo-cat-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* =====================================================
+   9. HEADER GAYA KOSAKATA / KANJI (Level 1 & Level 2)
+   Memakai kelas koto-* dari styles.css; di sini hanya
+   gambar latar khusus Grammar + penyesuaian kecil.
+   ===================================================== */
+
+.koto-hero.koto-hero-bunpo {
+  background-image: url('assets/bunpo/bunpo-hero-bg.svg');
+  background-position: center bottom;
+}
+/* Hero kategori (versi pendek): tampilkan bagian atas gambar (bulan di belakang judul) */
+.koto-hero.koto-hero-sm.koto-hero-bunpo {
+  background-position: center 8%;
+}
+
+/* Search box tidak lagi "melayang" menimpa hero (jarak diatur oleh .koto-content) */
+.koto-content .bunpo-search-box {
+  margin: 0 0 20px;
+}
+
+/* Keterangan kategori di bawah hero pendek */
+.bunpo-cat-caption {
+  margin: -4px 4px 16px; font-size: 0.86rem; color: var(--text-muted); line-height: 1.5;
+}
+
+/* =====================================================
+   10. UPGRADE TAMPILAN — kategori, daftar materi, detail
+   (memakai kelas baru; kelas lama tetap ada untuk kompatibilitas)
+   ===================================================== */
+
+/* ---------- Kolom cari (gaya Kosakata / Kanji) ---------- */
+.koto-content .bunpo-searchbar { margin: 0 0 20px; }
+.bunpo-searchbar:focus-within { border-color: #b9a6f0; }
+.bunpo-searchbar .bunpo-search-input {
+  flex: 1; min-width: 0; border: none; outline: none; background: transparent;
+  font-size: 15px; color: #1a1a1a; padding: 0; box-shadow: none;
+}
+.bunpo-searchbar .bunpo-search-input::placeholder { color: #a9adbb; }
+
+/* ---------- Sorotan bagian grammar (emas) & bentuk negatif (merah) ---------- */
+mark.bunpo-hl {
+  background: #FFE39A; color: #3a2a00; border-radius: 6px; padding: 0 3px;
+  box-shadow: inset 0 -3px 0 #FFC83D;
+}
+mark.bunpo-hl.bunpo-hl-neg {
+  background: #FFD3D3; color: #7a1414; box-shadow: inset 0 -3px 0 #F28C8C;
+}
+.bunpo-row-chip mark.bunpo-hl { padding: 0 2px; border-radius: 5px; box-shadow: inset 0 -2px 0 #FFC83D; }
+
+/* ---------- Ukuran huruf judul menurut panjang ---------- */
+.bp-j-xl { font-size: 1.4rem; }
+.bp-j-l  { font-size: 1.2rem; }
+.bp-j-m  { font-size: 1.02rem; }
+.bp-j-s  { font-size: 0.9rem; }
+
+/* ---------- Kartu kategori (2 kolom, lebih ringkas) ---------- */
+.bunpo-cat-card.bunpo-tile {
+  padding: 14px 14px 13px; border-radius: 22px; display: flex; flex-direction: column;
+  box-shadow: 0 4px 14px rgba(20,20,50,0.07);
+}
+.bunpo-tile-top { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.bunpo-tile-ico {
+  position: relative; width: 46px; height: 46px; border-radius: 16px; flex-shrink: 0;
+  background: rgba(255,255,255,0.72); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+}
+.bunpo-tile-no {
+  position: absolute; top: -7px; left: -7px; min-width: 21px; height: 21px; box-sizing: border-box;
+  padding: 0 4px; border-radius: 999px; color: #fff; font-size: 0.68rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; border: 2px solid #fff;
+}
+.bunpo-tile-title { 
+  /* Font akan menyesuaikan ukuran layar: minimal 0.65rem, menyesuaikan 3.5vw, maksimal 1.02rem */
+  font-size: clamp(0.65rem, 3.5vw, 1.02rem); 
+  font-weight: 800; 
+  color: #1c2d3f; 
+  line-height: 1.2; 
+  margin: 0; 
+  min-width: 0; 
+  
+  /* Memaksa teks agar tetap 1 baris dan tidak turun ke bawah */
+  white-space: nowrap; 
+  overflow: hidden; 
+  
+  /* Opsional: Jika di layar HP yang sangat kecil teks masih mentok, akan muncul titik-titik (...) */
+  text-overflow: ellipsis; 
+}
+.bunpo-tile-desc { font-size: 0.76rem; color: #4a5568; line-height: 1.4; margin: 0; flex: 1; }
+.bunpo-tile-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 11px; }
+.bunpo-tile-count { background: rgba(255,255,255,0.78); font-size: 0.7rem; font-weight: 800; padding: 3px 10px; border-radius: 999px; }
+.bunpo-tile-arrow { color: rgba(30,40,60,0.4); font-size: 1.15rem; line-height: 1; }
+
+/* ---------- Baris materi (daftar) ---------- */
+.bunpo-materi-card.bunpo-row {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px; margin-bottom: 10px;
+  border-radius: 18px; box-shadow: 0 3px 12px rgba(20,20,40,0.06);
+}
+.bunpo-row-num {
+  width: 40px; height: 40px; border-radius: 14px; flex-shrink: 0; font-size: 0.85rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.bunpo-row-mid { flex: 1; min-width: 0; }
+.bunpo-row-l1 { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 8px; }
+.bunpo-row-jud {
+  font-weight: 900; color: var(--text-dark); line-height: 1.25; min-width: 0;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.bunpo-row-chip {
+  font-weight: 800; font-size: 0.78rem; border-radius: 999px; padding: 3px 10px; margin-left: auto;
+  max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.bunpo-row-sub {
+  font-size: 0.82rem; color: #7a7d92; margin: 2px 0 0; line-height: 1.35;
+  overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;
+}
+.bunpo-row-arr { color: #c8c8d8; font-size: 1.15rem; flex-shrink: 0; }
+
+/* ---------- Hero detail ---------- */
+.bunpo-dhero-text { min-width: 0; flex: 1; }
+.bunpo-crumb {
+  display: inline-flex; align-items: center; background: rgba(255,255,255,0.8); color: #6a49c8;
+  font-size: 0.66rem; font-weight: 800; letter-spacing: 0.4px; padding: 3px 10px; border-radius: 999px; margin-bottom: 4px;
+}
+.bunpo-dhero-judul {
+  font-weight: 900; color: #1c1638; margin: 0; line-height: 1.15;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+.bunpo-dhero-judul.bp-j-xl { font-size: 2.15rem; }
+.bunpo-dhero-judul.bp-j-l  { font-size: 1.6rem; }
+.bunpo-dhero-judul.bp-j-m  { font-size: 1.25rem; }
+.bunpo-dhero-judul.bp-j-s  { font-size: 1.05rem; }
+.bunpo-dhero-sub { font-size: 0.86rem; font-weight: 600; color: #5a5f78; margin: 2px 0 0; line-height: 1.35; }
+
+/* ---------- Isi detail ---------- */
+.bunpo-dcontent { padding: 22px 16px 34px; }
+
+/* Pola: kartu besar seperti rumus */
+.bunpo-pola-card {
+  position: relative; overflow: hidden; margin-bottom: 14px; padding: 18px 18px 16px; border-radius: 24px; color: #fff;
+  background: linear-gradient(150deg, #6f4fd0 0%, #8f70ec 100%); box-shadow: 0 12px 28px rgba(111,79,208,0.32);
+  opacity: 0; animation: bpSlideUp 0.35s ease forwards;
+}
+.bunpo-pola-card::after {
+  content: "文"; position: absolute; right: -6px; bottom: -34px; font-size: 8.5rem; font-weight: 900; line-height: 1;
+  color: rgba(255,255,255,0.08); font-family: "Hiragino Sans", "Noto Sans JP", sans-serif; pointer-events: none;
+}
+.bunpo-pola-label { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.9px; opacity: 0.92; margin: 0 0 12px; }
+.bunpo-pola-dot { width: 24px; height: 24px; border-radius: 8px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+.bunpo-formula { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; position: relative; z-index: 1; }
+.bunpo-fx-tok {
+  background: #fff; color: #5a3bb8; border-radius: 14px; padding: 8px 13px; font-weight: 900; font-size: 1rem;
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif; box-shadow: 0 4px 10px rgba(30,10,80,0.18); line-height: 1.3;
+}
+.bunpo-fx-tok.key { background: #FFD86B; color: #3a2a00; font-size: 1.35rem; padding: 6px 15px; }
+.bunpo-fx-op { font-weight: 900; font-size: 1.05rem; opacity: 0.85; }
+.bunpo-formula.compact { gap: 6px; }
+.bunpo-formula.compact .bunpo-fx-tok { font-size: 0.86rem; padding: 6px 10px; border-radius: 12px; }
+.bunpo-formula.compact .bunpo-fx-tok.key { font-size: 1.05rem; }
+.bunpo-pola-note { font-size: 0.84rem; line-height: 1.55; opacity: 0.95; margin: 0 0 12px; position: relative; z-index: 1; }
+.bunpo-pola-mini { background: rgba(255,255,255,0.16); border-radius: 14px; padding: 10px 13px; position: relative; z-index: 1; }
+.bunpo-pola-mini small { display: block; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.8px; opacity: 0.85; margin-bottom: 3px; }
+.bunpo-pola-mini span { font-size: 1rem; font-weight: 800; font-family: "Hiragino Sans", "Noto Sans JP", sans-serif; }
+
+/* Kartu blok (Fungsi / Contoh / Contoh lain / Negatif) */
+.bunpo-dcontent .bunpo-block { border-radius: 20px; padding: 16px 17px; box-shadow: 0 4px 16px rgba(30,20,60,0.06); margin-bottom: 12px; }
+.bunpo-dcontent .bunpo-block-label { margin-bottom: 11px; }
+.bunpo-dcontent .bunpo-block-text { color: #3f4256; line-height: 1.65; }
+.bunpo-em { color: #5a3bb8; background: #f0eaff; border-radius: 6px; padding: 0 5px; font-weight: 800; font-size: 0.88em; letter-spacing: 0.2px; }
+.badge-lain { background: #e0f4f4; }
+.bunpo-block-lain { animation-delay: 0.24s; }
+.bunpo-legend {
+  display: inline-flex; align-items: center; gap: 6px; margin-left: auto; font-size: 0.7rem; font-weight: 700;
+  color: #8a7a3a; background: #FFF6D9; border-radius: 999px; padding: 3px 10px;
+}
+.bunpo-legend i { width: 12px; height: 12px; border-radius: 4px; background: #FFC83D; display: inline-block; }
+
+/* Kartu contoh */
+.bunpo-dcontent .bunpo-example-card { border-radius: 16px; padding: 14px 16px; border-left-width: 5px; border-left-color: #6f4fd0; background: linear-gradient(155deg, #f7f5ff 0%, #eeeafd 100%); }
+.bunpo-dcontent .bunpo-block-lain .bunpo-example-card { border-left-color: #1f9494; background: linear-gradient(155deg, #f2fbfb 0%, #e3f5f5 100%); }
+.bunpo-dcontent .bunpo-example-card.negative { border-left-color: #dc4a4a; background: linear-gradient(155deg, #fff6f6 0%, #fde9e9 100%); }
+.bunpo-dcontent .bunpo-example-kanji { font-size: 1.2rem; font-weight: 900; line-height: 1.5; margin: 0 0 6px; }
+.bunpo-dcontent .bunpo-example-hiragana { font-size: 0.9rem; color: #6b6d84; margin: 0 0 2px; line-height: 1.6; }
+.bunpo-dcontent .bunpo-example-romaji { font-size: 0.84rem; color: #9294aa; margin: 0 0 9px; }
+.bunpo-dcontent .bunpo-example-arti { font-size: 0.95rem; color: #26283a; font-weight: 700; }
+
+/* ---------- Perbaikan tata letak kartu kategori & baris materi ---------- */
+.bunpo-page .bunpo-cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.bunpo-cat-card.bunpo-tile { min-width: 0; align-items: stretch; text-align: left; }
+.bunpo-tile-title, .bunpo-tile-desc { text-align: left; }
+.bunpo-materi-card.bunpo-row { text-align: left; }
+.bunpo-row-mid, .bunpo-row-l1, .bunpo-row-sub { text-align: left; }
+.bunpo-dcontent { text-align: left; }
+.bunpo-dcontent .bunpo-block { text-align: left; }
+.bunpo-pola-card { text-align: left; }
+
+/* ---------- Subjudul detail: bisa 2 baris tanpa terpotong tepi hero ---------- */
+.bunpo-dhero-sub {
+  overflow: hidden; text-overflow: ellipsis; display: -webkit-box;
+  -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; padding-right: 4px;
+}
+/* ---------- Perbaikan Center Alignment Hero Detail ---------- */
+.bunpo-dhero-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.bunpo-dhero-center .bunpo-crumb {
+  margin-bottom: 6px;
+  align-self: center;
+}
+
+.bunpo-dhero-center .bunpo-dhero-judul {
+  text-align: center;
+  width: 100%;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.bunpo-dhero-center .bunpo-dhero-sub {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 90%;
+}

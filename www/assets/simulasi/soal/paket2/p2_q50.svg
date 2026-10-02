@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#FDFBF7" />
+  
+  <!-- Header Brosur -->
+  <rect x="50" y="20" width="700" height="50" fill="#E74C3C" rx="8"/>
+  <text x="400" y="52" font-family="sans-serif" font-size="24" fill="#FFF" font-weight="bold" text-anchor="middle">スーパー あらきや (特売情報)</text>
+
+  <!-- Bagian 1: Promo Terbatas -->
+  <rect x="50" y="90" width="700" height="110" fill="#FFF" stroke="#E74C3C" stroke-width="2" rx="8"/>
+  <text x="80" y="125" font-family="sans-serif" font-size="20" fill="#C0392B" font-weight="bold">【6月11日(月) 〜 14日(木) の限定安売り】</text>
+  <text x="100" y="165" font-family="sans-serif" font-size="18" fill="#333">・さとう 128円</text>
+  <text x="350" y="165" font-family="sans-serif" font-size="18" fill="#E74C3C" font-weight="bold">・トイレットペーパー 490円 ★</text>
+
+  <!-- Bagian 2: Promo Mingguan Routine -->
+  <rect x="50" y="220" width="700" height="190" fill="#FFF" stroke="#008080" stroke-width="2" rx="8"/>
+  <text x="80" y="255" font-family="sans-serif" font-size="20" fill="#008080" font-weight="bold">【毎週の安売り曜日】</text>
+  <text x="100" y="295" font-family="sans-serif" font-size="18" fill="#333">月・火 : くだもの、魚、ジュース</text>
+  
+  <rect x="90" y="315" width="500" height="40" fill="#E8F5E9" rx="6"/>
+  <text x="100" y="342" font-family="sans-serif" font-size="18" fill="#27AE60" font-weight="bold">水・木 : とうふ、にく(肉)、やさい(野菜) ★</text>
+  
+  <text x="100" y="385" font-family="sans-serif" font-size="18" fill="#333">金・土 : パン、ぎゅうにゅう、魚、やさい</text>
+</svg>

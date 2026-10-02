@@ -1,0 +1,57 @@
+/* =====================================================
+   DeX Gaku — import-export.css
+   Styling untuk:
+   - Submenu Import/Export di dalam drawer (accordion)
+   - Penanda warna ungu untuk data hasil Import
+     (beda dari oranye milik data Tambah Data manual)
+   ===================================================== */
+
+:root {
+  --ie-accent: #7c3aed;
+  --ie-accent-light: #f1e9fd;
+  --ie-accent-dark: #5b21b6;
+}
+
+/* =====================================================
+   1. SUBMENU DRAWER (Import Kotoba/Kanji/Bunpo/All, dst)
+   ===================================================== */
+
+.drawer-item-expand { position: relative; }
+.drawer-item-chevron {
+  margin-left: auto; font-size: 15px; color: #bbb; flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+.drawer-item-expand.expanded .drawer-item-chevron { transform: rotate(90deg); color: var(--ie-accent); }
+
+.drawer-submenu {
+  max-height: 0; overflow: hidden; transition: max-height 0.25s ease;
+  display: flex; flex-direction: column; padding-left: 8px;
+}
+.drawer-submenu.open { max-height: 260px; }
+
+.drawer-subitem {
+  background: none; border: none; text-align: left; font-family: inherit;
+  padding: 10px 8px 10px 32px; font-size: 0.88rem; font-weight: 600; color: #555;
+  cursor: pointer; border-radius: 10px; position: relative;
+}
+.drawer-subitem::before {
+  content: ""; position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  width: 5px; height: 5px; border-radius: 50%; background: #ccc;
+}
+.drawer-subitem:active { background: var(--ie-accent-light); color: var(--ie-accent-dark); }
+
+/* =====================================================
+   2. PENANDA DATA HASIL IMPORT (warna ungu)
+   ===================================================== */
+
+.ie-text-import { color: var(--ie-accent) !important; }
+
+.ie-badge-import {
+  display: inline-block; font-size: 9.5px; font-weight: 800; color: var(--ie-accent-dark);
+  background: var(--ie-accent-light); border-radius: 6px; padding: 2px 7px;
+  margin-left: 6px; vertical-align: middle; letter-spacing: 0.3px;
+}
+
+/* Kartu data import juga memakai efek tekan-tahan yang sama
+   dengan data Tambah Data (tambah-data-pressing di tambah-data.css),
+   supaya perilaku long-press terasa konsisten di seluruh aplikasi. */

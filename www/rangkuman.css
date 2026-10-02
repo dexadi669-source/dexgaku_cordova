@@ -1,0 +1,268 @@
+/* =====================================================
+   DeX Gaku — rangkuman.css (Modern UI - Bunpo Header Style)
+   ===================================================== */
+
+:root {
+  --rk-accent: #0f9d8c;
+  --rk-accent-light: #e2f6f3;
+  --rk-accent-dark: #0b7a6d;
+  --rk-bg-soft: #f4f6f8;
+  --rk-text-main: #1a1a1a;
+  --rk-text-muted: #888888;
+}
+
+/* =====================================================
+   1. HALAMAN UTAMA (DIJAMIN MENTOK FULL SCREEN)
+   ===================================================== */
+.rk-page { 
+  position: relative;
+  /* Menggunakan margin negatif untuk menarik background mentok ke tepi layar */
+  margin: -70px -20px -40px;
+  min-height: 100vh;
+  background-color: var(--rk-bg-soft);
+  z-index: 1;
+  display: block;
+  animation: rkFadeIn 0.3s ease-out;
+}
+
+
+/* =====================================================
+   2. HEADER GAYA BUNPO (Gambar Penuh)
+   ===================================================== */
+.rk-header { 
+  position: relative;
+  width: 100%;
+  height: 260px; /* Tinggi proporsional untuk gambar */
+  background-image: url('assets/rangkuman/rangkuman_bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gelap transparan agar teks selalu terbaca jelas */
+.rk-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+  z-index: 1;
+}
+
+.rk-header-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 20px;
+  margin-top: 20px;
+}
+
+.rk-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.rk-header-sub { 
+  font-size: 14px; 
+  color: #f0f0f0; 
+  margin: 0; 
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* =====================================================
+   3. TOMBOL KEMBALI (Gaya Pil Putih)
+   ===================================================== */
+.rk-back-btn {
+  position: absolute;
+  top: 40px;
+  left: 16px;
+  background: #ffffff;
+  color: #e63946; /* Warna merah ala Bunpo, bisa diganti ke var(--rk-accent) jika mau */
+  border: none;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.rk-back-btn:active { 
+  transform: scale(0.92); 
+  background: #fcfcfc;
+}
+
+/* =====================================================
+   4. KONTEN LIST (Overlap Melengkung ke Atas)
+   ===================================================== */
+.rk-content {
+  position: relative;
+  z-index: 3;
+  background: var(--rk-bg-soft);
+  margin-top: -30px; /* Menarik konten ke atas menimpa gambar */
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  padding: 30px 20px 60px;
+  min-height: calc(100vh - 230px);
+}
+
+/* =====================================================
+   5. KARTU MENU (Clean & Minimalist - Bersusun Ke Bawah)
+   ===================================================== */
+.rk-menu-list, .rk-bab-grid { 
+  display: flex; flex-direction: column; gap: 14px; 
+}
+
+.rk-card, .rk-bab-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s;
+  box-sizing: border-box;
+  width: 100%;
+  animation: rkSlideUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+.rk-card:nth-child(1), .rk-bab-card:nth-child(1) { animation-delay: 0.05s; }
+.rk-card:nth-child(2), .rk-bab-card:nth-child(2) { animation-delay: 0.10s; }
+.rk-card:nth-child(3), .rk-bab-card:nth-child(3) { animation-delay: 0.15s; }
+.rk-card:nth-child(4), .rk-bab-card:nth-child(4) { animation-delay: 0.20s; }
+.rk-card:nth-child(5), .rk-bab-card:nth-child(5) { animation-delay: 0.25s; }
+
+.rk-card:active, .rk-bab-card:active { 
+  transform: scale(0.96); 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.rk-card-icon, .rk-bab-nomor {
+  width: 50px; height: 50px; border-radius: 16px; flex-shrink: 0;
+  background: var(--rk-accent-light); color: var(--rk-accent-dark);
+  display: flex; align-items: center; justify-content: center; 
+  font-size: 22px; font-weight: 800;
+}
+
+.rk-card-text, .rk-bab-text { flex: 1; min-width: 0; }
+.rk-card-title, .rk-bab-judul {
+  font-size: 16px; font-weight: 800; color: var(--rk-text-main); margin: 0 0 4px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.rk-card-desc {
+  font-size: 13px; color: var(--rk-text-muted); margin: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.rk-bab-label { font-size: 11px; font-weight: 800; color: var(--rk-accent); margin: 0 0 2px; letter-spacing: 0.5px; text-transform: uppercase; }
+.rk-card-arrow { color: #d0d0d0; font-size: 20px; flex-shrink: 0; font-weight: 400; }
+
+
+/* =====================================================
+   6. DETAIL SATU BAB
+   ===================================================== */
+.rk-section { margin-bottom: 24px; animation: rkSlideUp 0.4s ease backwards; }
+.rk-section:nth-child(1) { animation-delay: 0.05s; }
+.rk-section:nth-child(2) { animation-delay: 0.1s; }
+.rk-section:nth-child(3) { animation-delay: 0.15s; }
+
+.rk-section-label {
+  font-size: 13px; font-weight: 800; color: var(--rk-accent-dark); margin: 0 0 12px;
+  letter-spacing: 0.4px; text-transform: uppercase;
+}
+
+.rk-section-fokus {
+  background: var(--rk-accent-light); border-radius: 20px; padding: 18px 20px; margin-bottom: 24px; border: none;
+}
+.rk-section-fokus .rk-section-label { margin-bottom: 8px; }
+.rk-fokus-text { font-size: 14px; color: #155e54; line-height: 1.6; margin: 0; }
+
+.rk-pola-block, .rk-partikel-card, .rk-contoh-card, .rk-section-catatan {
+  background: #fff; border-radius: 18px; padding: 16px 18px; margin-bottom: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02);
+}
+.rk-pola-judul { font-size: 13px; font-weight: 800; color: var(--rk-accent); margin: 0 0 6px; }
+.rk-pola-fungsi { font-size: 13px; color: #666; line-height: 1.6; margin: 0 0 12px; }
+
+.rk-jp-text { font-size: 16px; font-weight: 700; color: var(--rk-text-main); margin: 0 0 4px; line-height: 1.5; }
+.rk-baca-text { font-size: 13px; color: #999; font-style: italic; margin: 0 0 4px; }
+.rk-arti-text { font-size: 14px; color: #444; margin: 0; line-height: 1.5; }
+
+.rk-pola-example {
+  background: #f8fbfa; border-radius: 12px; padding: 12px 14px; margin-top: 10px;
+  border-left: 4px solid var(--rk-accent);
+}
+
+.rk-partikel-badge {
+  display: inline-block; background: var(--rk-accent); color: #fff; font-weight: 800;
+  font-size: 14px; padding: 4px 14px; border-radius: 999px; margin-bottom: 10px;
+}
+.rk-contoh-card { border-left: 4px solid #ffde59; }
+
+.rk-list { margin: 0; padding-left: 20px; }
+.rk-list li { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 6px; }
+
+.rk-section-catatan { background: #fffcf5; border: 1px solid #ffeed2; }
+.rk-section-catatan .rk-section-label { color: #c68813; }
+.rk-list-catatan li { color: #7a601c; }
+
+.rk-ringkasan-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.rk-chip {
+  background: #fff; color: var(--rk-accent-dark); font-size: 13px; font-weight: 700;
+  padding: 8px 16px; border-radius: 999px; line-height: 1.4; border: 1px solid var(--rk-accent-light);
+}
+
+.rk-bab-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 32px; gap: 12px; }
+.rk-bab-nav-btn {
+  background: #fff; color: #444; border: 1px solid #eee; border-radius: 999px;
+  padding: 14px 22px; font-size: 14px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: 0.2s;
+}
+.rk-bab-nav-btn.primary { background: var(--rk-accent); color: #fff; border: none; box-shadow: 0 6px 16px rgba(15,157,140,0.25); }
+.rk-bab-nav-btn:active { transform: scale(0.95); }
+
+/* =====================================================
+   7. VIEWER GOOGLE DRIVE (TETAP FULLSCREEN)
+   ===================================================== */
+.rk-viewer-page {
+  position: fixed; inset: 0; z-index: 1000; background: #fff;
+  display: flex; flex-direction: column; animation: rkFadeIn 0.2s;
+}
+.rk-viewer-header {
+  display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-bottom: 1px solid #f0f0f0; background: #fff;
+}
+.rk-viewer-back {
+  background: #f5f5f5; border: none; width: 40px; height: 40px; border-radius: 12px;
+  font-size: 18px; color: #444; cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.rk-viewer-back:active { background: #ebebeb; transform: scale(0.95); }
+.rk-viewer-title { font-size: 16px; font-weight: 800; margin: 0; }
+.rk-viewer-frame-wrap { flex: 1; position: relative; background: #f8fbfa; }
+.rk-viewer-iframe { width: 100%; height: 100%; border: none; display: block; }
+.rk-viewer-loading {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  gap: 10px; font-size: 14px; color: #999; font-weight: 600; background: #fafafa; transition: opacity 0.25s ease;
+}
+.rk-viewer-loading.rk-hidden { opacity: 0; pointer-events: none; }
+.rk-spinner {
+  width: 20px; height: 20px; border-radius: 50%; border: 3px solid #e0e0e0;
+  border-top-color: var(--rk-accent); animation: rkSpin 0.8s linear infinite;
+}
+
+/* ANIMASI KEYFRAMES */
+@keyframes rkFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rkSlideUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes rkSpin { to { transform: rotate(360deg); } }

@@ -1,0 +1,530 @@
+/* =====================================================
+   DeX Gaku — riwayat.css (V5 - Final Fix Kilatan)
+   - No backdrop-filter (cepat)
+   - Swipe-to-delete support
+   - Actions hidden TOTAL saat tidak swipe-open
+   - No kilatan merah/orange
+   ===================================================== */
+
+:root {
+  --r-prim-blue: #3a86ff;
+  --r-prim-blue-dark: #2a6fdb;
+  --r-bg-soft: #f4f7fc;
+  --r-text-main: #1a202c;
+  --r-text-sub: #718096;
+
+  --r-grad-green: linear-gradient(135deg, #43ea80 0%, #38b000 100%);
+  --r-grad-red: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);
+  --r-grad-netral: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
+}
+
+@keyframes rFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* =====================================================
+   WRAPPER
+   ===================================================== */
+.r-wrap-v2 {
+  position: relative;
+  margin: -70px -20px -40px;
+  min-height: 100vh;
+  padding: 0;
+  background-color: var(--r-bg-soft);
+  background-image: url('../assets/riwayat/body_bg.webp');
+  background-repeat: repeat;
+  background-size: 200px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--r-text-main);
+  animation: rFadeIn 0.2s ease;
+  z-index: 1;
+  will-change: opacity;
+  overscroll-behavior-x: contain;
+  overflow-x: hidden;
+}
+
+.r-wrap-v2 * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+.riw-hero-header {
+  position: relative;
+  background-image: url('../assets/riwayat/header_bg.webp');
+  background-size: cover;
+  background-position: center bottom;
+  padding: 90px 20px 45px;
+  text-align: center;
+  border-radius: 0 0 30px 30px;
+  margin: 0 0 25px 0;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.riw-back-btn {
+  position: absolute;
+  top: 35px;
+  left: 15px;
+  background: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #e53e3e;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.15s ease;
+}
+
+.riw-back-btn:active { transform: scale(0.95); }
+
+.riw-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1a202c;
+  margin: 0 0 5px;
+  letter-spacing: -0.5px;
+}
+
+.riw-subtitle {
+  font-size: 14px;
+  color: #4a5568;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* =====================================================
+   BODY
+   ===================================================== */
+.riw-body-content {
+  padding: 0 16px 80px;
+  position: relative;
+  z-index: 11;
+}
+
+.riw-filter-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  padding: 6px;
+  border-radius: 999px;
+  max-width: 340px;
+  margin: 0 auto 25px;
+  border: 1px solid #e8eef5;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+}
+
+.riw-filter-pill {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--r-text-sub);
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.riw-filter-pill:active { color: var(--r-prim-blue); }
+
+.riw-filter-pill.active {
+  background: #fff;
+  color: var(--r-prim-blue);
+  box-shadow: 0 2px 6px rgba(58, 134, 255, 0.15);
+}
+
+/* =====================================================
+   LIST
+   ===================================================== */
+.riw-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: opacity 0.15s ease;
+  will-change: opacity;
+  overscroll-behavior-x: contain;
+  touch-action: pan-y;
+}
+
+/* Empty State */
+.riw-empty {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  border: 1px solid #edf2f7;
+  animation: rFadeIn 0.25s ease;
+}
+
+.riw-empty-emoji { font-size: 48px; margin-bottom: 15px; }
+.riw-empty-title { font-size: 18px; font-weight: 700; color: var(--r-text-main); margin: 0 0 10px; }
+.riw-empty-sub { font-size: 13.5px; color: var(--r-text-sub); margin: 0; line-height: 1.6; }
+
+/* =====================================================
+   CARD WRAPPER (Swipe Container) — FIXED
+   ===================================================== */
+.riw-card-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: transparent;
+  isolation: isolate;
+  overscroll-behavior-x: contain;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.riw-card-wrapper .riw-card {
+  position: relative;
+  z-index: 2;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  background: #fff;
+  border-radius: 20px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Card slide saat swipe-open */
+.riw-card-wrapper.swipe-open .riw-card {
+  transform: translate3d(-130px, 0, 0);
+  transition: transform 0.22s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* =====================================================
+   SWIPE ACTIONS — HIDDEN TOTAL BY DEFAULT
+   Menggunakan display: none → benar-benar tidak dirender
+   ===================================================== */
+.riw-card-swipe-actions {
+  display: none; /* ✅ DEFAULT: tidak dirender sama sekali */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  border-radius: 0 20px 20px 0;
+  overflow: hidden;
+  width: 130px;
+}
+
+/* Hanya tampil saat swipe-open */
+.riw-card-wrapper.swipe-open .riw-card-swipe-actions {
+  display: flex;
+}
+
+.riw-swipe-btn {
+  flex: 1;
+  border: none;
+  color: #fff;
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: filter 0.15s ease;
+}
+
+.riw-swipe-btn:active { filter: brightness(0.88); }
+
+.riw-swipe-ic { font-size: 22px; line-height: 1; }
+.riw-swipe-lbl { font-size: 11px; font-weight: 800; letter-spacing: 0.3px; }
+
+.riw-swipe-delete { background: #e53e3e; }
+.riw-swipe-all    { background: #ed8936; }
+
+/* =====================================================
+   CARD CONTENT
+   ===================================================== */
+.riw-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 18px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(26, 32, 44, 0.04);
+  border: 1px solid #edf2f7;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.riw-card:active {
+  background-color: #fafbfc;
+}
+
+.riw-card-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.riw-card-icon-wrap {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.riw-icon-emoji {
+  font-size: 22px;
+  z-index: 2;
+  line-height: 1;
+}
+
+.riw-ic-kanji { background-color: #fffaf0; }
+.riw-ic-kotoba { background-color: #f0fff4; }
+.riw-ic-bunpo { background-color: #faf5ff; }
+.riw-ic-kana { background-color: #fff5f5; }
+.riw-ic-campuran { background-color: #e6fffa; }
+.riw-ic-simulasi { background-color: #ebf8ff; }
+.riw-ic-default { background-color: #f7fafc; }
+
+.riw-card-bodytext { flex: 1; padding-right: 20px; }
+
+.riw-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.riw-badge-hijau { background: var(--r-grad-green); }
+.riw-badge-merah { background: var(--r-grad-red); }
+.riw-badge-netral { background: var(--r-grad-netral); }
+
+.riw-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--r-text-main);
+  margin: 0 0 3px;
+  line-height: 1.3;
+}
+
+.riw-card-subtitle {
+  font-size: 12px;
+  color: var(--r-text-sub);
+  margin: 0 0 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.riw-card-metarow {
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid #edf2f7;
+  padding-top: 8px;
+  margin-top: 5px;
+}
+.riw-meta-item {
+  font-size: 11px;
+  color: var(--r-text-sub);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.riw-card-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 15px;
+  margin-top: 5px;
+}
+
+.riw-score-zone { display: flex; align-items: baseline; color: var(--r-text-main); }
+
+.riw-card-score {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.riw-slash { color: #cbd5e0; font-weight: 300; margin: 0 2px; font-size: 24px; }
+.riw-unit { font-size: 12px; font-weight: 600; color: var(--r-text-sub); margin-left: 4px; }
+
+.riw-stats-zone { display: flex; gap: 6px; }
+
+.riw-stat-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.riw-stat-pill.good { background-color: #f0fff4; color: #2f855a; border: 1px solid #c6f6d5; }
+.riw-stat-pill.bad { background-color: #fff5f5; color: #c53030; border: 1px solid #fed7d7; }
+
+.riw-st-ic { font-size: 10px; }
+@media (max-width: 360px) { .riw-st-lbl { display: none; } }
+
+/* =====================================================
+   CONFIRM MODAL — Cepat & Ringan
+   ===================================================== */
+.riw-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(20, 20, 25, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: background 0.15s ease;
+  pointer-events: none;
+}
+
+.riw-confirm-overlay.show {
+  background: rgba(20, 20, 25, 0.5);
+  pointer-events: auto;
+}
+
+.riw-confirm-modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px 22px;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+  box-sizing: border-box;
+  transform: scale(0.94);
+  opacity: 0;
+  transition: transform 0.15s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.12s ease;
+  will-change: transform, opacity;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.riw-confirm-overlay.show .riw-confirm-modal {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.riw-confirm-ic {
+  font-size: 40px;
+  margin-bottom: 10px;
+  display: inline-block;
+  line-height: 1;
+}
+
+.riw-confirm-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--r-text-main);
+  margin: 0 0 8px;
+}
+
+.riw-confirm-desc {
+  font-size: 13px;
+  color: var(--r-text-sub);
+  margin: 0 0 20px;
+  line-height: 1.55;
+}
+
+.riw-confirm-desc .riw-text-bold {
+  color: var(--r-text-main);
+  font-weight: 700;
+}
+
+.riw-confirm-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.riw-confirm-batal,
+.riw-confirm-hapus {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 800;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: background 0.12s ease, transform 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.riw-confirm-batal {
+  background: #edf2f7;
+  color: #4a5568;
+}
+.riw-confirm-batal:active {
+  background: #e2e8f0;
+  transform: scale(0.97);
+}
+
+.riw-confirm-hapus {
+  background: var(--r-grad-red);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(238, 82, 83, 0.28);
+}
+.riw-confirm-hapus:active {
+  transform: scale(0.97);
+}
+
+/* =====================================================
+   TOAST
+   ===================================================== */
+@keyframes rtPopIn {
+  0% { transform: translate(-50%, 20px); opacity: 0; }
+  100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.v2-toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  background: rgba(26, 32, 44, 0.92);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  z-index: 9999;
+  will-change: transform, opacity;
+}
+
+.v2-toast.show {
+  animation: rtPopIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+}
+
+.rt-ic { font-size: 14px; }

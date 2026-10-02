@@ -1,0 +1,771 @@
+/* =================================================
+   HALAMAN KANJI (menu, daftar kategori, detail)
+   ================================================= */
+
+:root {
+  --kanji-teal: #1B6B68;
+  --kanji-bg-cream: #F4F0E6;
+  --kanji-text-dark: #222222;
+  --kanji-text-muted: #666666;
+}
+
+.kanji-hero {
+  position: relative;
+  background: linear-gradient(180deg, #fdf1f1, #faeaea);
+  border-radius: 0 0 26px 26px;
+  margin: -24px -20px 18px;
+  padding: 22px 20px 26px;
+  overflow: hidden;
+  text-align: left; /* Diubah dari center menjadi left */
+  animation: fadeInUp .35s ease-out;
+}
+
+
+
+
+.kanji-hero-back {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  z-index: 5;
+  transition: transform .12s ease;
+}
+
+.kanji-hero-back:active {
+  transform: scale(0.9);
+}
+
+.kanji-hero-illustration {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.kanji-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kanji-hero-char {
+  position: relative;
+  z-index: 2;
+  font-size: 3.4rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1;
+  margin-bottom: 4px;
+  animation: popIn .4s ease-out;
+}
+
+.kanji-hero-title {
+  position: relative;
+  z-index: 2;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 0 0 2px;
+}
+
+.kanji-hero-reading {
+  position: relative;
+  z-index: 2;
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+
+.kanji-hero-desc {
+  position: relative;
+  z-index: 2;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.kanji-total-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card-bg);
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  margin-bottom: 14px;
+  animation: fadeInUp .35s ease-out .05s backwards;
+}
+
+.kanji-total-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #fde3e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.kanji-total-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.kanji-total-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0 0 2px;
+}
+
+.kanji-total-value {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.kanji-total-badge {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #3c9b4a;
+  background: #dff3e3;
+  padding: 5px 12px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.kanji-total-arrow {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.kanji-search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card-bg);
+  border-radius: 999px;
+  padding: 12px 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+  margin-bottom: 16px;
+}
+
+.kanji-search-icon {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.kanji-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-family: inherit;
+  min-width: 0;
+}
+
+.kanji-search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.kanji-search-clear {
+  background: #e8e8e8;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.kanji-search-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: left;
+  margin: 4px 0 4px;
+}
+
+.kanji-search-count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: left;
+  margin: 0 0 16px;
+}
+
+.kanji-search-empty {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  padding: 28px 20px;
+  text-align: center;
+  color: var(--text-muted);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+}
+
+.kanji-cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.kanji-cat-card {
+  background: var(--card-bg);
+  border-radius: 18px;
+  padding: 16px 14px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+  transition: transform .15s ease, box-shadow .15s ease;
+  animation: fadeInUp .3s ease-out backwards;
+}
+
+.kanji-cat-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.kanji-cat-card.tap-shrink {
+  animation: tapShrink .28s ease-out;
+}
+
+.kanji-list-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+  transition: box-shadow .12s ease;
+}
+
+.kanji-list-card:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.kanji-list-card.tap-pop {
+  animation: tapPop .24s ease-out;
+}
+
+.kanji-list-char {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  width: 46px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.kanji-list-text {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.kanji-list-reading {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0 0 2px;
+}
+
+.kanji-list-arti {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.kanji-list-catlabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #e0574a;
+  background: #fde3e1;
+  padding: 4px 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.kanji-list-arrow {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* =================================================
+   DESAIN BARU DETAIL KANJI (KREM & TEAL #1B6B68)
+   ================================================= */
+
+.kanji-v2-container {
+  background-color: var(--kanji-bg-cream);
+  min-height: 100vh;
+  padding: 18px 20px 36px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--kanji-text-dark);
+  box-sizing: border-box;
+  text-align: left; /* Memastikan font di halaman detail rata kiri */
+}
+
+/* Topbar Header */
+.kanji-v2-topbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.kanji-v2-back-btn {
+  background: #EBE6D8;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.kanji-v2-back-btn:active {
+  transform: scale(0.92);
+}
+
+.kanji-v2-topbar-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #777777;
+}
+
+.kanji-v2-topbar-title::before,
+.kanji-v2-topbar-title::after {
+  content: "";
+  height: 1px;
+  background-color: #DDD8CB;
+  width: 24px;
+}
+
+.kanji-v2-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kanji-v2-brand-img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.kanji-v2-brand-text {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #1A1A1A;
+}
+
+/* Sub-heading Kategori */
+.kanji-v2-cat-sub {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: var(--kanji-teal);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+/* Row Kanji & Arti Utama */
+.kanji-v2-main-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.kanji-v2-box-wrap {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f1e3be; /* Warna kotak diubah menjadi #f1e3be */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+}
+
+
+.kanji-v2-box-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.kanji-v2-char {
+  position: relative;
+  z-index: 2;
+  font-size: 3.6rem;
+  font-weight: 700;
+  color: #111111;
+  line-height: 1;
+}
+
+.kanji-v2-arti-wrap {
+  flex: 1;
+}
+
+.kanji-v2-section-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--kanji-teal);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.kanji-v2-arti-main {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--kanji-text-dark);
+  margin: 0 0 2px 0;
+  line-height: 1.2;
+}
+
+.kanji-v2-arti-sub {
+  font-size: 0.88rem;
+  color: var(--kanji-text-muted);
+  margin: 0;
+}
+
+/* Divider Garis Teal Kustom */
+.kanji-v2-divider {
+  position: relative;
+  height: 1px;
+  background-color: #DDD8CB;
+  margin: 22px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kanji-v2-divider::after {
+  content: "";
+  width: 18px;
+  height: 5px;
+  background-color: var(--kanji-teal);
+  border-radius: 3px;
+}
+
+/* Block Section */
+.kanji-v2-block {
+  margin-bottom: 16px;
+}
+
+.kanji-v2-reading-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--kanji-text-dark);
+  margin-bottom: 6px;
+}
+
+.kanji-v2-meta-text {
+  font-size: 0.85rem;
+  color: var(--kanji-text-muted);
+}
+
+.kanji-v2-subheading {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--kanji-text-dark);
+  margin: 2px 0 8px 0;
+}
+
+.kanji-v2-desc {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #333333;
+  margin: 0;
+}
+
+/* Contoh Kata */
+.kanji-v2-examples-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kanji-v2-ex-item {
+  font-size: 0.92rem;
+  color: #333333;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.kanji-v2-ex-kata {
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: #444444;
+}
+
+.kanji-v2-ex-sep {
+  color: var(--kanji-text-muted);
+}
+
+.kanji-v2-ex-arti {
+  color: var(--kanji-text-muted);
+  font-weight: 600;
+}
+
+/* Banner Tips Acak */
+.kanji-v2-tip-box {
+  background-color: #E7E3D6;
+  border-left: 3px solid var(--kanji-teal);
+  border-radius: 4px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.kanji-v2-tip-badge {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--kanji-teal);
+  letter-spacing: 0.5px;
+}
+
+.kanji-v2-tip-content {
+  font-size: 0.85rem;
+  color: #333333;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Animations */
+@keyframes tapShrink {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+
+@keyframes tapPop {
+  0% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+.kanji-modern-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg, #ffffff);
+  border-radius: 16px;
+  padding: 10px 14px;
+  margin-top: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+  flex-wrap: nowrap; /* Mencegah elemen turun ke bawah */
+  gap: 6px;
+}
+
+.kanji-page-pill-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f4f0e6;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #222222;
+  cursor: pointer;
+  flex-shrink: 0; /* Mengecilkan risiko tombol terdorong */
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.kanji-page-pill-btn:hover:not(.disabled) {
+  background: #e8e2d2;
+}
+
+.kanji-page-pill-btn.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.kanji-page-indicators {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  flex: 1;
+  justify-content: center;
+  scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+}
+
+.kanji-page-indicators::-webkit-scrollbar {
+  display: none; /* Sembunyikan scrollbar di Chrome/Safari */
+}
+
+.kanji-page-dot-btn {
+  background: transparent;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #666666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.kanji-page-dot-btn:hover {
+  background: #f0ede6;
+}
+
+.kanji-page-dot-btn.active {
+  background: var(--kanji-teal, #1B6B68);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(27, 107, 104, 0.25);
+}
+/* =================================================
+   TRANSISI HALUS KANJI
+   ================================================= */
+
+/* Fade in wrapper */
+.koto-wrapper.koto-fade-in {
+  animation: kotoFadeIn 0.3s ease-out;
+}
+
+@keyframes kotoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in detail kanji */
+.kanji-v2-container.kanji-detail-fade-in {
+  animation: kanjiDetailFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes kanjiDetailFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Kanji char pop */
+.kanji-v2-char.kanji-char-pop {
+  animation: kanjiCharPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes kanjiCharPop {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Transisi halaman (list pagination) */
+.kanji-paginated-list-container {
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.kanji-paginated-list-container.kanji-page-transition-out {
+  opacity: 0;
+  transform: translateX(-12px);
+}
+
+.kanji-paginated-list-container.kanji-page-transition-in {
+  animation: kanjiPageIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes kanjiPageIn {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in untuk ganti halaman kategori */
+#detailExtra.slide-in-right {
+  animation: slideInRightKanji 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInRightKanji {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide short untuk search */
+.slide-in-short {
+  animation: slideInShort 0.2s ease-out;
+}
+
+@keyframes slideInShort {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

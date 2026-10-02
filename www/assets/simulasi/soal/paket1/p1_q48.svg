@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#FDFBF7" />
+  
+  <!-- Judul Infografis -->
+  <rect x="200" y="15" width="400" height="40" fill="#008080" rx="8"/>
+  <text x="400" y="42" font-family="sans-serif" font-size="20" fill="#FFFFFF" font-weight="bold" text-anchor="middle">高木大学に行きたい人へ</text>
+
+  <!-- RUTE 1 -->
+  <rect x="40" y="70" width="720" height="75" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="2" rx="6"/>
+  <text x="60" y="100" font-family="sans-serif" font-size="18" fill="#E74C3C" font-weight="bold">① 寺西駅</text>
+  <text x="60" y="128" font-family="sans-serif" font-size="14" fill="#666">バス 45分 ＋ 歩く 1分</text>
+  <text x="620" y="100" font-family="sans-serif" font-size="16" fill="#333" font-weight="bold">時間: 46分</text>
+  <text x="620" y="125" font-family="sans-serif" font-size="16" fill="#333" font-weight="bold">お金: 300円</text>
+
+  <!-- RUTE 2 -->
+  <rect x="40" y="155" width="720" height="75" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="2" rx="6"/>
+  <text x="60" y="185" font-family="sans-serif" font-size="18" fill="#333" font-weight="bold">② 花田駅</text>
+  <text x="60" y="213" font-family="sans-serif" font-size="14" fill="#666">電車 25分 ＋ 歩く 5分</text>
+  <text x="620" y="185" font-family="sans-serif" font-size="16" fill="#333" font-weight="bold">時間: 30分</text>
+  <text x="620" y="210" font-family="sans-serif" font-size="16" fill="#E74C3C" font-weight="bold">お金: 550円 (＞500)</text>
+
+  <!-- RUTE 3 -->
+  <rect x="40" y="240" width="720" height="75" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="2" rx="6"/>
+  <text x="60" y="270" font-family="sans-serif" font-size="18" fill="#333" font-weight="bold">③ 花田駅</text>
+  <text x="60" y="298" font-family="sans-serif" font-size="14" fill="#666">地下鉄 30分 ＋ 歩く 10分</text>
+  <text x="620" y="270" font-family="sans-serif" font-size="16" fill="#333" font-weight="bold">時間: 40分</text>
+  <text x="620" y="295" font-family="sans-serif" font-size="16" fill="#333" font-weight="bold">お金: 450円</text>
+
+  <!-- RUTE 4 (JAWABAN BENAR) -->
+  <rect x="40" y="325" width="720" height="85" fill="#E8F5E9" stroke="#2ECC71" stroke-width="3" rx="6"/>
+  <text x="60" y="360" font-family="sans-serif" font-size="20" fill="#27AE60" font-weight="bold">④ 糸川駅 ★</text>
+  <text x="60" y="390" font-family="sans-serif" font-size="15" fill="#27AE60" font-weight="bold">電車 25分 ＋ 歩く 10分</text>
+  <text x="620" y="360" font-family="sans-serif" font-size="18" fill="#27AE60" font-weight="bold">時間: 35分</text>
+  <text x="620" y="390" font-family="sans-serif" font-size="18" fill="#27AE60" font-weight="bold">お金: 430円</text>
+</svg>
